@@ -1,0 +1,14 @@
+.bg-bo1{
+	background-color: rgba(0, 0, 0, 0.52);
+	margin-left: 2%;
+	margin-right: 2%; 
+}
+
+.centered{
+	text-align: center;
+	color: white;
+}
+
+.accordion-inner p{
+	color: white;
+}

@@ -1,0 +1,17 @@
+.card-login{
+	width: 45%;
+	text-align: center;
+	background-color: white;
+
+}
+
+.form-login{
+	width: 80%;
+	margin: 5% auto;
+}
+
+@media (max-width:765px) {
+  	.card-login{
+		width: 80%;
+	}
+}
