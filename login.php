@@ -1,34 +1,17 @@
 <?php
     require_once("Usuario.php");
     require_once ("Menu.php");
+    require_once 'Header.php';
     session_start();
-    if(@!is_null( $_SESSION["Usuario"] ) ){
+    if(isset( $_SESSION["Usuario"] ) ){
         $usuario = $_SESSION["Usuario"];
     }  
 ?>
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autocinema Coyote</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="css/animate.css" rel="stylesheet" />
-    <!-- Squad theme CSS -->
-    <link href="css/style.css" rel="stylesheet">
-	<link href="color/default.css" rel="stylesheet">
-	<!-- Backstretch CSS -->
-    <link href="css/backstretch.css" rel="stylesheet">
-	<!-- login CSS -->
-  <link rel="stylesheet" href="css/login.css" rel="stylesheet">
-
-</head>
-
+<?php
+    echo getHeader(0);
+?>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
 	<div id="preloader">
@@ -36,11 +19,11 @@
 	</div>
 
         <?php
-            if( @is_null( $usuario ) || @is_null($usuario->getId()) ){
-                echo setMenu(-1);
+            if( !isset( $usuario ) || is_null($usuario->getId()) ){
+                echo setMenu(-1, 0);
             }
             else{
-                echo setMenu( $usuario->getTipo() );
+                echo setMenu( $usuario->getTipo() , 0);
             }
         ?>
         
@@ -48,8 +31,7 @@
     <section id="login" class="home-section">
         <div class="container card-login">
             <?php
-            if( @is_null( $usuario ) || @is_null($usuario->getId()) ){
-                echo setMenu(-1);
+            if( !isset( $usuario ) || is_null($usuario->getId()) ){
             
             ?>
             <form class="form-login" action="loginAction.php" method="POST">
