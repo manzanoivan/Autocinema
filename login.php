@@ -45,7 +45,7 @@
                             <!--espacio entre iniciar y campos -->
                         </span>
                     </label>
-                    <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i>Iniciar Sesión</button>
+                    <button class="btn btn-theme btn-block" href="index.php" type="submit"><i class="fa fa-lock"></i>Iniciar Sesión</button>
                     <hr>                
                     <div class="login-social-link centered">
                         <p>Mediante Redes Sociales</p>
@@ -73,25 +73,9 @@
         </div>
     </section>
 
-    <!-- Core JavaScript Files -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>	
-	<script src="js/jquery.scrollTo.js"></script>
-	<script src="js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="js/custom.js"></script>
-    <script src="js/backstretch/jquery.backstretch.js"></script>
-	<script>
-        $.backstretch([
-          "img/intro/1.jpg",
-          "img/intro/2.jpg",
-          "img/intro/3.jpg"
-        ], {
-            fade: 750,
-            duration: 4000
-        });
-    </script>
+    <?php
+        echo getScripts(0);
+    ?>
 
 </body>
 

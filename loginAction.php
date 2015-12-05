@@ -14,7 +14,7 @@
     //$password = 'usuario';
     
     $usuario = new Usuario( $username , $password );
-    if(is_null ($usuario->getId()) ){
+    if(is_null($usuario->getId()) ){
         header("Location: index.html");
     }
     else{
@@ -28,7 +28,7 @@
             case 3:
                 header("Location: SinUtilizar/info.html");
             case 4:
-                header("Location: SinUtilizar/profile3.html");    
+                header("Location: SinUtilizar/profile3.php");    
             default:
                 break;
         }

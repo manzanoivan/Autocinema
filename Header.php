@@ -27,4 +27,33 @@
         $header .="</head>"; 
         return $header;
     }
+    
+    function getScripts($sub){
+        $carpeta = "";
+        $footer = "";
+        for( $i = 0; $i < $sub; $i++ ){
+            $carpeta .= "../";
+        }
+        
+        $footer .="    <!-- Core JavaScript Files -->"; 
+        $footer .="    <script src='".$carpeta."js/jquery.min.js'></script>"; 
+        $footer .="    <script src='".$carpeta."js/bootstrap.min.js'></script>"; 
+        $footer .="    <script src='".$carpeta."js/jquery.easing.min.js'></script> "; 
+        $footer .="    <script src='".$carpeta."js/jquery.scrollTo.js'></script>"; 
+        $footer .="    <script src='".$carpeta."js/wow.min.js'></script>"; 
+        $footer .="    <!-- Custom Theme JavaScript -->"; 
+        $footer .="    <script src='".$carpeta."js/custom.js'></script>"; 
+        $footer .="    <script src='".$carpeta."js/backstretch/jquery.backstretch.js'></script>"; 
+        $footer .="    <script>"; 
+        $footer .="        $.backstretch(["; 
+        $footer .="          '".$carpeta."img/intro/1.jpg',"; 
+        $footer .="          '".$carpeta."img/intro/2.jpg',"; 
+        $footer .="          '".$carpeta."img/intro/3.jpg'"; 
+        $footer .="        ], {"; 
+        $footer .="            fade: 750,"; 
+        $footer .="            duration: 4000"; 
+        $footer .="        });"; 
+        $footer .="    </script>"; 
+        return $footer;
+    }
 ?>

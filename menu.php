@@ -35,7 +35,7 @@
         $menu .="        <div class='collapse navbar-collapse navbar-right navbar-main-collapse'>"; 
         $menu .="      		<ul class='nav navbar-nav'>"; 
         $menu .="	        	<li class='active'><a href='".$carpeta."index.html#intro'>Home</a></li>"; 
-        $menu .="		        <li><a href='content-filter.html'>Cartelera</a></li>"; 
+        $menu .="		        <li><a href='".$carpeta."content-filter.html'>Cartelera</a></li>"; 
         $menu .="				<li><a href='".$carpeta."index.html#ubicacion'>Ubicación</a></li>"; 
         $menu .="				<li><a href='".$carpeta."index.html#contacto'>Contacto</a></li>"; 
         $menu .="				<li><a href='".$carpeta."product-comparison.html'>Cafeteria</a></li>"; 
