@@ -25,10 +25,13 @@
                 break;
             case 2:
                 header("Location: SinUtilizar/info2.html");
+                break;
             case 3:
                 header("Location: SinUtilizar/info.html");
+                break;
             case 4:
                 header("Location: SinUtilizar/profile3.php");    
+                break;
             default:
                 break;
         }
