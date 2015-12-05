@@ -25,6 +25,11 @@
             }
             else{
                 $this->id = NULL;
+                $this->tipo = NULL;
+                $this->username = NULL;
+                $this->apellidos = NULL;
+                $this->nombre = NULL;
+                $this->email = NULL;
             }
             
         } 
