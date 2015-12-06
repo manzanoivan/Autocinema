@@ -1,11 +1,12 @@
 <?php
     require_once("Usuario.php");
-    require_once ("Menu.php");
+    require_once ("menu.php");
     require_once 'Header.php';
     session_start();
+    $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
         $usuario = $_SESSION["Usuario"];
-    }  
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,12 +24,7 @@
 	</div>
 
         <?php
-            if( !isset( $usuario ) || is_null($usuario->getId()) ){
-                echo setMenuIndex(-1);
-            }
-            else{
-                echo setMenuIndex( $usuario->getTipo());
-            }
+            echo setMenu( $usuario, -1, false);
         ?>
 
 	<!-- Section: intro -->

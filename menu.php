@@ -1,9 +1,20 @@
 <?php
-    function setMenu($tipo, $sub){
+    require_once("Usuario.php");
+    function setMenu($usuario, $sub, $cartelera){
         $carpeta = "";
+        $principal = "";
+        $tipo = -1;
+        if( !is_null($usuario) ){
+            $tipo = $usuario->getTipo();
+        } 
+        
         for( $i = 0; $i < $sub; $i++ ){
             $carpeta .= "../";
         }
+        if($sub != -1){
+            $principal = "index.php";
+        }
+        
         switch ($tipo) {
             /*case 1:
                 return menuAdmin($carpeta);
@@ -14,48 +25,37 @@
             case 4:
                 return menuEntrada($carpeta);
              */
-            default:
-                return menuNormal($carpeta);
-        }
-    }
-    
-    function setMenuIndex($tipo){
-        switch ($tipo) {
-            /*case 1:
-                return menuAdmin($carpeta);
             case 2:
-                return menuUsuario($carpeta);
-            case 3:
-                return menuCafeteria($carpeta);
-            case 4:
-                return menuEntrada($carpeta);
-             */
+                return menuUsuario($carpeta, $principal, $usuario->getUsername(), $cartelera);
             default:
-                return menuNormalIndex();
+                return menuNormal($carpeta, $principal, $cartelera);
         }
     }
     
-    
-    
-    function menuNormal($carpeta){
+    function menuNormal($carpeta, $principal, $cartelera){
         $menu = "";
         $menu .="	<nav class='navbar navbar-custom navbar-fixed-top' role='navigation'>"; 
         $menu .="        <div class='container'>"; 
         $menu .="            <div class='navbar-header page-scroll'>"; 
         $menu .="                <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-main-collapse'>"; 
         $menu .="                    <i class='fa fa-bars'></i>"; 
-        $menu .="                </button>"; 
-        $menu .="                <a class='navbar-brand' href='index.php'>"; 
-        $menu .="                    <h1>AutoCinema</h1>"; 
-        $menu .="                </a>"; 
-        $menu .="            </div>"; 
+        $menu .="                </button>";
+        if( $cartelera ){
+            $menu .="        <a href='#0' class='cd-filter-trigger'>Filtros</a>";
+        }
+        else{
+            $menu .="                <a class='navbar-brand' href='".$carpeta."index.php'>"; 
+            $menu .="                    <h1>AutoCinema</h1>"; 
+            $menu .="                </a>"; 
+        }
+        $menu .="   </div>";
         $menu .="        <!-- Collect the nav links, forms, and other content for toggling -->"; 
         $menu .="        <div class='collapse navbar-collapse navbar-right navbar-main-collapse'>"; 
         $menu .="      		<ul class='nav navbar-nav'>"; 
-        $menu .="	        	<li class='active'><a href='".$carpeta."index.php#intro'>Home</a></li>"; 
-        $menu .="		        <li><a href='".$carpeta."content-filter.html'>Cartelera</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."index.php#ubicacion'>Ubicación</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."index.php#contacto'>Contacto</a></li>"; 
+        $menu .="	        	<li class='active'><a href='".$carpeta.$principal."#intro'>Home</a></li>"; 
+        $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
+        $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
+        $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
         $menu .="				<li><a href='".$carpeta."product-comparison.html'>Cafeteria</a></li>"; 
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Login<b class='caret'></b></a>"; 
@@ -69,43 +69,44 @@
         $menu .="        <!-- /.container -->"; 
         $menu .="    </nav>"; 
         return $menu;
-}
+    }
 
-    function menuNormalIndex(){
+    function menuUsuario($carpeta, $principal, $nombre, $cartelera){
         $menu = "";
-        $menu .="    <nav class='navbar navbar-custom navbar-fixed-top' role='navigation'>"; 
+        $menu .="	<nav class='navbar navbar-custom navbar-fixed-top' role='navigation'>"; 
         $menu .="        <div class='container'>"; 
         $menu .="            <div class='navbar-header page-scroll'>"; 
         $menu .="                <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-main-collapse'>"; 
         $menu .="                    <i class='fa fa-bars'></i>"; 
         $menu .="                </button>"; 
-        $menu .="                <a class='navbar-brand' href='index.php'>"; 
-        $menu .="                    <h1>AutoCinema</h1>"; 
-        $menu .="                </a>"; 
+        if( $cartelera ){
+            $menu .="        <a href='#0' class='cd-filter-trigger'>Filtros</a>";
+        }
+        else{
+            $menu .="                <a class='navbar-brand' href='".$carpeta."index.php'>"; 
+            $menu .="                    <h1>AutoCinema</h1>"; 
+            $menu .="                </a>"; 
+        }
         $menu .="            </div>"; 
-        $menu .=""; 
-        $menu .="            <!-- Collect the nav links, forms, and other content for toggling -->"; 
-        $menu .="            <div class='collapse navbar-collapse navbar-right navbar-main-collapse'>"; 
-        $menu .="      <ul class='nav navbar-nav'>"; 
-        $menu .="        <li class='active'><a href='#intro'>Home</a></li>"; 
-        $menu .="        <li><a href='cartelera.php'>Cartelera</a></li>"; 
-        $menu .="        <li><a href='#ubicacion'>Ubicación</a></li>"; 
-        $menu .="        <li><a href='#contacto'>Contacto</a></li>"; 
-        $menu .="        <li><a href='cafeteria.php'>Cafeteria</a></li>"; 
-        $menu .="        <li class='dropdown'>"; 
-        $menu .="          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Login<b class='caret'></b></a>"; 
-        $menu .="          <ul class='dropdown-menu'>"; 
-        $menu .="            <li><a href='login.php'>Iniciar Sesión</a></li>"; 
-        $menu .="            <li><a href='signin.php'>Registrarse</a></li>"; 
-        $menu .="          </ul>"; 
-        $menu .="        </li>"; 
-        $menu .="      </ul>"; 
+        $menu .="        <!-- Collect the nav links, forms, and other content for toggling -->"; 
+        $menu .="        <div class='collapse navbar-collapse navbar-right navbar-main-collapse'>"; 
+        $menu .="      		<ul class='nav navbar-nav'>"; 
+        $menu .="	        	<li class='active'><a href='".$carpeta.$principal."#intro'>Home</a></li>"; 
+        $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
+        $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
+        $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
+        $menu .="				<li><a href='".$carpeta."product-comparison.html'>Cafeteria</a></li>"; 
+        $menu .="		        <li class='dropdown'>"; 
+        $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
+        $menu .="		          <ul class='dropdown-menu'>"; 
+        $menu .="		            <li><a href='".$carpeta."perfil.php'>Perfil</a></li>"; 
+        $menu .="		            <li><a href='".$carpeta."logout.php'>LogOut</a></li>"; 
+        $menu .="		          </ul>"; 
         $menu .="            </div>"; 
         $menu .="            <!-- /.navbar-collapse -->"; 
         $menu .="        </div>"; 
         $menu .="        <!-- /.container -->"; 
         $menu .="    </nav>"; 
-
         return $menu;
 }
 ?>

@@ -1,8 +1,9 @@
 <?php
     require_once("Usuario.php");
-    require_once ("Menu.php");
+    require_once ("menu.php");
     require_once 'Header.php';
     session_start();
+    $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
         $usuario = $_SESSION["Usuario"];
     }  
@@ -13,20 +14,13 @@
     echo getHeader(0);
 ?>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-    <!-- login CSS -->
-    <link rel='stylesheet' href='css/login.css' rel='stylesheet'>
 	<!-- Preloader -->
 	<div id="preloader">
 	  <div id="load"></div>
 	</div>
 
         <?php
-            if( !isset( $usuario ) || is_null($usuario->getId()) ){
-                echo setMenu(-1, 0);
-            }
-            else{
-                echo setMenu( $usuario->getTipo() , 0);
-            }
+            echo setMenu( $usuario , 0, false);
         ?>
         
 
@@ -56,7 +50,7 @@
                     </div>
                     <div class="registration">
                         Aún no estas registrado?<br>
-                        <a class="" href="#">
+                        <a class="" href="signin.php">
                             Crear una cuenta
                         </a>
                     </div>    
@@ -66,7 +60,7 @@
             }
             else{
             ?>    
-                <form class="form-login" action="loginAction.php" method="POST">
+                <form class="form-login" action="" method="POST">
                     <h2 class="form-login-heading">Ya has iniciado sesión</h2>
                 </form>
             <?php

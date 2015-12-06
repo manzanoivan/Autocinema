@@ -5,7 +5,7 @@
         $user = $GLOBALS['DBUser'];
         $pass = $GLOBALS['DBPass'];
         $bd = $GLOBALS['DBName'];
-        $link = @mysqli_connect($server, $user, $pass,$bd) or die;
+        $link = mysqli_connect($server, $user, $pass,$bd) or die;
         if (mysqli_connect_errno())
         {
             return "";
@@ -44,13 +44,16 @@
 
     function insert($sql,$link){
         mysqli_set_charset($link, "utf8");
-        if(!$result = mysqli_query($link,$sql)) 
+        if (!$result = mysqli_query($link, $sql)) {
             die();
-        if($result == true)
-            return "yes";
-        else
-            return "no"; 
-    }
+        }
+        if ($result == true) {
+            return true;
+            }
+        else {
+            return false;
+        }
+}
 
     function desconecta($link)
     {

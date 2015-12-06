@@ -39,7 +39,6 @@
           </div><!-- --/col-md-4 ---->
         </div><!-- /row -->    
       </div>
-
       
       <div class="col-lg-12 mt">    
         <div class="row content-panel bg-white">

@@ -23,11 +23,11 @@
         $header .="    <link href='".$carpeta."css/backstretch.css' rel='stylesheet'>";
         $header .=""; 
         $header .="<!-- login CSS -->";
-        $header .="<link rel='stylesheet' href='css/login.css' rel='stylesheet'>";
-        $header .="<link href='css/ct/nav-tabs.css' rel='stylesheet'/>";
+        $header .="<link rel='stylesheet' href='".$carpeta."css/login.css' rel='stylesheet'>";
+        $header .="<link href='".$carpeta."css/ct/nav-tabs.css' rel='stylesheet'/>";
         $header .="<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>";
-	$header .= "<link rel='stylesheet' href='css/filter-style.css'> <!-- Resource style -->";
-	$header .= "<script src='js/modernizr.js'></script>";
+	$header .= "<link rel='stylesheet' href='".$carpeta."css/filter-style.css'> <!-- Resource style -->";
+	$header .= "<script src='".$carpeta."js/modernizr.js'></script>";
         $header .="</head>"; 
         return $header;
         
@@ -60,6 +60,7 @@
         $footer .="            duration: 4000"; 
         $footer .="        });"; 
         $footer .="    </script>"; 
+
         return $footer;
     }
 ?>
