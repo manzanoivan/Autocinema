@@ -3,6 +3,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
+	require_once("ListaDeFunciones.php");
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -25,127 +26,26 @@
 
 
             <section class="cd-gallery">
-                    <ul>
-                            <li class="mix color-1 check1 radio2 option3"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-2 check2 radio2 option2"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check3 radio3 option1"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check3 radio2 option4"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check1 radio3 option2"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-2 check2 radio3 option3"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-2 check2 radio2 option1"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check1 radio3 option4"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-2 check1 radio2 option3"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check3 radio2 option4"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-1 check3 radio3 option5"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
-                            <li class="mix color-2 check1 radio3 option5"><a href="revisarfuncion.html">
-                    <div class="team boxed-grey">
-                        <div class="inner">
-                                                    <h5>Insurgentes</h5>
-                            <p class="subtitle">20:30 horas</p>
-                            <div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-                            <p class="subtitle">COMPRAR</p>
-                        </div>
-                    </div>
-                </a></li>
+                    <ul>					                
+				<?php
+					$listaDeFunciones = new ListaDeFunciones();
+					$funciones = $listaDeFunciones->getFuncionesWhere("");
+					foreach ($funciones as $funcion) {
+				?>
+						<li class="mix color-1 check1 radio2 option3"><a href="revisarfuncion.php?id=<?php echo $funcion->getId(); ?>">
+							<div class="team boxed-grey">
+								<div class="inner">
+									<h5><?php echo $funcion->getSede(); ?></h5>
+									<p class="subtitle"><?php echo $funcion->getFecha(); ?></p>
+									<!-- CAMBIAR POR getImagen -->
+									<div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
+									<p class="subtitle"><?php echo $funcion->getNombrePelicula(); ?></p>
+								</div>
+							</div>
+						</a></li>
+				<?php 
+					} 				
+				?>								
                             <li class="gap"></li>
                             <li class="gap"></li>
                             <li class="gap"></li>

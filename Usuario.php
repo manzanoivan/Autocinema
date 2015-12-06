@@ -11,7 +11,7 @@
         function __construct( $user , $password ) 
         { 
             $link = conecta();
-            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username from usuario where username='".$user."' AND password='".$password."'";
+            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username from usuario where username='".$user."' AND BINARY password='".$password."'";
             $myArray = consultaUsuarios($sql1, $link);
             desconecta($link);
             
