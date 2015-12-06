@@ -13,6 +13,8 @@
     echo getHeader(0);
 ?>
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <!-- login CSS -->
+    <link rel='stylesheet' href='css/login.css' rel='stylesheet'>
 	<!-- Preloader -->
 	<div id="preloader">
 	  <div id="load"></div>

@@ -20,12 +20,18 @@
         $header .="    <link href='".$carpeta."css/style.css' rel='stylesheet'>"; 
         $header .="    <link href='".$carpeta."color/default.css' rel='stylesheet'>"; 
         $header .="    <!-- Backstretch CSS -->"; 
-        $header .="    <link href='".$carpeta."css/backstretch.css' rel='stylesheet'>"; 
-        $header .="    <!-- login CSS -->"; 
-        $header .="  <link rel='stylesheet' href='".$carpeta."css/login.css' rel='stylesheet'>"; 
+        $header .="    <link href='".$carpeta."css/backstretch.css' rel='stylesheet'>";
         $header .=""; 
+        $header .="<!-- login CSS -->";
+        $header .="<link rel='stylesheet' href='css/login.css' rel='stylesheet'>";
+        $header .="<link href='css/ct/nav-tabs.css' rel='stylesheet'/>";
+        $header .="<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>";
+	$header .= "<link rel='stylesheet' href='css/filter-style.css'> <!-- Resource style -->";
+	$header .= "<script src='js/modernizr.js'></script>";
         $header .="</head>"; 
         return $header;
+        
+        
     }
     
     function getScripts($sub){
