@@ -7,11 +7,12 @@
         private $nombre;
         private $apellidos;
         private $email;
+        private $sexo;
 
         function __construct( $user , $password ) 
         { 
             $link = conecta();
-            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username from usuario where username='".$user."' AND BINARY password='".$password."'";
+            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username, idSexo from usuario where username='".$user."' AND BINARY password='".$password."'";
             $myArray = consultaUsuarios($sql1, $link);
             desconecta($link);
             
@@ -22,6 +23,7 @@
                 $this->apellidos = $myArray[0]['apellidos'];
                 $this->nombre = $myArray[0]['nombre'];
                 $this->email = $myArray[0]['email'];
+                $this->sexo = $myArray[0]['sexo'];
             }
             else{
                 $this->id = NULL;
@@ -30,6 +32,7 @@
                 $this->apellidos = NULL;
                 $this->nombre = NULL;
                 $this->email = NULL;
+                $this->sexo = NULL;
             }
             
         } 
@@ -75,6 +78,10 @@
         
         public function getEmail(){
             return $this->email;
+        }
+        
+        public function getSexo(){
+            return $this->sexo;
         }
 
         public function setEmail($email){

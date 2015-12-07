@@ -26,16 +26,45 @@
                 return menuEntrada($carpeta);
              */
             case 2:
-                return menuUsuario($carpeta, $principal, $usuario->getUsername(), $cartelera);
+                return menuUsuario($carpeta, $principal, $usuario->getUsername(), $cartelera, false);
             default:
-                return menuNormal($carpeta, $principal, $cartelera);
+                return menuNormal($carpeta, $principal, $cartelera, false);
         }
     }
     
-    function menuNormal($carpeta, $principal, $cartelera){
+    function setMenuCafeteria($usuario){
+        $tipo = -1;
+        $carpeta = "../";
+        $principal = "index.php";
+        $cartelera = false;        
+        if( !is_null($usuario) ){
+            $tipo = $usuario->getTipo();
+        } 
+        
+        switch ($tipo) {
+            /*case 1:
+                return menuAdmin($carpeta);
+            case 2:
+                return menuUsuario($carpeta);
+            case 3:
+                return menuCafeteria($carpeta);
+            case 4:
+                return menuEntrada($carpeta);
+             */
+            case 2:
+                return menuUsuario($carpeta, $principal, $usuario->getUsername(), $cartelera,  true);
+            default:
+                return menuNormal($carpeta, $principal, $cartelera, true);
+        }
+    }
+    
+    function menuNormal($carpeta, $principal, $cartelera, $cafeteria){
         $menu = "";
         $menu .="	<nav class='navbar navbar-custom navbar-fixed-top' role='navigation'>"; 
         $menu .="        <div class='container'>"; 
+        if( $cafeteria ){
+            $menu .= "<div id='cd-cart-trigger'><a class='cd-img-replace' href='#0'>Cart</a></div>";
+        }
         $menu .="            <div class='navbar-header page-scroll'>"; 
         $menu .="                <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-main-collapse'>"; 
         $menu .="                    <i class='fa fa-bars'></i>"; 
@@ -56,7 +85,7 @@
         $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."product-comparison.html'>Cafeteria</a></li>"; 
+        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafeteria</a></li>"; 
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Login<b class='caret'></b></a>"; 
         $menu .="		          <ul class='dropdown-menu'>"; 
@@ -71,10 +100,13 @@
         return $menu;
     }
 
-    function menuUsuario($carpeta, $principal, $nombre, $cartelera){
+    function menuUsuario($carpeta, $principal, $nombre, $cartelera, $cafeteria){
         $menu = "";
         $menu .="	<nav class='navbar navbar-custom navbar-fixed-top' role='navigation'>"; 
         $menu .="        <div class='container'>"; 
+        if( $cafeteria ){
+            $menu .= "<div id='cd-cart-trigger'><a class='cd-img-replace' href='#0'>Cart</a></div>";
+        }
         $menu .="            <div class='navbar-header page-scroll'>"; 
         $menu .="                <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-main-collapse'>"; 
         $menu .="                    <i class='fa fa-bars'></i>"; 
@@ -95,7 +127,7 @@
         $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."product-comparison.html'>Cafeteria</a></li>"; 
+        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafeteria</a></li>"; 
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="		          <ul class='dropdown-menu'>"; 

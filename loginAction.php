@@ -15,7 +15,7 @@
     
     $usuario = new Usuario( $username , $password );
     if(is_null($usuario->getId()) ){
-        header("Location: index.php");
+        header("Location: login.php");
     }
     else{
         $_SESSION['Usuario'] = $usuario;

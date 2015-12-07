@@ -37,7 +37,7 @@
         $rawdata = array();
         while($row = mysqli_fetch_array($result))
         {
-            $rawdata[] = [ 'nombre' => $row['nombre'], 'apellidos' => $row['apellidos'], 'id' => $row['idUsuario'], 'email' => $row['email'] , 'tipo' => $row['tipo'] , 'username' => $row['username']];
+            $rawdata[] = [ 'nombre' => $row['nombre'], 'apellidos' => $row['apellidos'], 'id' => $row['idUsuario'], 'email' => $row['email'] , 'tipo' => $row['tipo'] , 'username' => $row['username'], 'sexo' => $row['idSexo']];
         }
         return $rawdata;
     }
