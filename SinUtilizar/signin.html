@@ -42,7 +42,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-      <ul class="nav navbar-nav">
+     <ul class="nav navbar-nav">
         <li class="active"><a href="index.html#intro">Home</a></li>
         <li><a href="content-filter.html">Cartelera</a></li>
 		<li><a href="index.html#ubicacion">Ubicación</a></li>
@@ -50,8 +50,13 @@
 		<li><a href="product-comparison.html">Cafeteria</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
-         
+          <ul class="dropdown-menu">
+            <li><a href="login.html">Iniciar Sesión</a></li>
+            <li><a href="signin.html">Registrarse</a></li>
+          </ul>
 		
+        </li>
+      </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -61,29 +66,31 @@
 	<section id="login" class="home-section">
 		  <div class="container card-login">
       
-          
-            <h2 class="form-login-heading">Denegado</h2>
-            
-              
-                <div class="team boxed-grey">
-	                    <div class="inner">
-							<h5>Compra Denegada</h5>
-	                        
-	                        <div class="avatar"><img src="img/icons/checked_false.png" alt="" class="img-responsive img-circle img-center" /></div>
-	                    </div>
-	                </div>
-	                
-               
-    
-            </div>     
-      
+          <form class="form-login" action="index.html">
+            <h2 class="form-login-heading">Registro</h2>
+            <div class="login-wrap">
+                <input class="form-control" placeholder="Nombre" autofocus="" type="text" required>
+                <br>
+                <input class="form-control" placeholder="Usuario" autofocus="" type="text" required>
+                <br>
+                <input class="form-control" placeholder="Email" autofocus="" type="email" required>
+                <br>
+                <input class="form-control" placeholder="Password" type="password" required>
+                <label class="checkbox">
+                    <span class="pull-right">
+                        <!--espacio entre iniciar y campos -->
+                    </span>
+                </label>
+                <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i>Registrarme</button>
+                <hr>
+            </div>
+          </form>     
+      </div>
   </section>
 
     <!-- Core JavaScript Files -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>	
-	<script src="js/jquery.scrollTo.js"></script>
 	<script src="js/wow.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.js"></script>
@@ -100,5 +107,4 @@
     </script>
 
 </body>
-
 </html>

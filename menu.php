@@ -99,7 +99,8 @@
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="		          <ul class='dropdown-menu'>"; 
-        $menu .="		            <li><a href='".$carpeta."perfil.php'>Perfil</a></li>"; 
+        $menu .="		            <li><a href='".$carpeta."Perfil/perfil.php'>Perfil</a></li>"; 
+        $menu .="		            <li><a href='".$carpeta."Perfil/editar.php'>Editar Perfil</a></li>";
         $menu .="		            <li><a href='".$carpeta."logout.php'>LogOut</a></li>"; 
         $menu .="		          </ul>"; 
         $menu .="            </div>"; 

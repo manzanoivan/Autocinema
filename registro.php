@@ -31,7 +31,7 @@
         if( $insertar ){
             $usuario = new Usuario( $username , $password );
             $_SESSION['Usuario'] = $usuario;
-            header("Location: index.php");
+            header("Location: Perfil/perfil.php");
         }
         else{
             header("Location: login.php");

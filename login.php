@@ -33,21 +33,16 @@
             <form class="form-login" action="loginAction.php" method="POST">
                 <h2 class="form-login-heading">Login</h2>
                 <div class="login-wrap">
-                    <input class="form-control" placeholder="Usuario" autofocus="" type="text" name="user">
+                    <input class="form-control" placeholder="Usuario" autofocus="" type="text" name="user" required>
                     <br>
-                    <input class="form-control" placeholder="Password" type="password" name="password">
+                    <input class="form-control" placeholder="Password" type="password" name="password" required>
                     <label class="checkbox">
                         <span class="pull-right">
                             <!--espacio entre iniciar y campos -->
                         </span>
                     </label>
                     <button class="btn btn-theme btn-block" href="index.php" type="submit"><i class="fa fa-lock"></i>Iniciar Sesión</button>
-                    <hr>                
-                    <div class="login-social-link centered">
-                        <p>Mediante Redes Sociales</p>
-                        <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-                        <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-                    </div>
+                    <hr>
                     <div class="registration">
                         Aún no estas registrado?<br>
                         <a class="" href="signin.php">

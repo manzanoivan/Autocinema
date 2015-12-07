@@ -24,7 +24,7 @@
                 header("Location: SinUtilizar/info3.html");
                 break;
             case 2:
-                header("Location: SinUtilizar/info2.html");
+                header("Location: Perfil/perfil.php");
                 break;
             case 3:
                 header("Location: SinUtilizar/info.html");

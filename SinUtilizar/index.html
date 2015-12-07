@@ -1,21 +1,27 @@
-<?php
-    require_once("Usuario.php");
-    require_once ("menu.php");
-    require_once 'Header.php';
-    session_start();
-    $usuario = NULL;
-    if(isset( $_SESSION["Usuario"] ) ){
-        $usuario = $_SESSION["Usuario"];
-    }
-?>
-
 <!DOCTYPE html>
 <html>
 
-<?php
-    echo getHeader(0);
-    
-?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Autocinema Coyote</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+	<!-- Backstretch CSS -->
+    <link href="css/backstretch.css" rel="stylesheet">
+	<!-- Ct CSS -->
+    <link href="css/ct/nav-tabs.css" rel="stylesheet"/>
+
+</head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
@@ -23,9 +29,38 @@
 	  <div id="load"></div>
 	</div>
 
-        <?php
-            echo setMenu( $usuario, -1, false);
-        ?>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <h1>AutoCinema</h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#intro">Home</a></li>
+        <li><a href="content-filter.html">Cartelera</a></li>
+		<li><a href="#ubicacion">Ubicación</a></li>
+		<li><a href="#contacto">Contacto</a></li>
+		<li><a href="product-comparison.html">Cafeteria</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="login.html">Iniciar Sesión</a></li>
+            <li><a href="signin.html">Registrarse</a></li>
+          </ul>
+        </li>
+      </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
 	<!-- Section: intro -->
     <section id="intro" class="intro container">
@@ -263,6 +298,16 @@
                                 </span>
                                 <input type="email" class="form-control" id="email" placeholder="Ingresa email" required="required" /></div>
                         </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Asunto</label>
+                            <select id="subject" name="subject" class="form-control" required="required">
+                                <option value="na" selected="">Selecciona uno:</option>
+                                <option value="service">Película</option>
+                                <option value="suggestions">Boletos</option>
+                                <option value="product">Cafeteria</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -314,22 +359,38 @@
 	<!-- /Section: contact -->
 
 	<footer>
-            <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                            <div class="wow shake" data-wow-delay="0.4s">
-                            <div class="page-scroll marginbot-30">
-                                    <a href="#intro" id="totop" class="btn btn-circle">
-                                            <i class="fa fa-angle-double-up animated"></i>
-                                    </a>
-                            </div>
-                            </div>
-                    </div>
-            </div>	
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow shake" data-wow-delay="0.4s">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+					</div>
+					</div>
+				</div>
+			</div>	
 	</footer>
 
-    <?php
-        echo getScripts(0);
-    ?>
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
+    <script src="js/backstretch/jquery.backstretch.js"></script>
+	<script>
+        $.backstretch([
+          "img/intro/1.jpg",
+          "img/intro/2.jpg",
+          "img/intro/3.jpg"
+        ], {
+            fade: 750,
+            duration: 4000
+        });
+    </script>
 
 </body>
 

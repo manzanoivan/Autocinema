@@ -11,6 +11,7 @@
 			if(strcmp($whereQuery, "") != 0)
 				$query = $query." AND ".$whereQuery;
 			$link = conecta();
+                        mysqli_set_charset($link, "utf8");
 			if(!$result = mysqli_query($link,$query)){ 
 				die();
 			}

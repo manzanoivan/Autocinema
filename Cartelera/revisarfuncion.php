@@ -2,7 +2,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
-	require_once("ListaDeFunciones.php");
+    require_once("ListaDeFunciones.php");
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -33,10 +33,20 @@
         <div class="container-fluid bg-white">
             <div class="row">
                 <div class="col-md-8">
+				
+					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
+					
+					<?php
+						$id = $_GET['id'];
+						$listaDeFunciones = new ListaDeFunciones();
+						$funciones = $listaDeFunciones->getFuncionesWhere("idFuncion = ".$id);
+						if($funciones != null){
+					?>
+					
                     <div class="card mb">
                         <div class="header">
-                            <h4 class="title nomg">The Terminal</h4>
-                            <h6>(La Terminal)</h6>
+                            <h4 class="title nomg"><?php echo $funciones[0]->getNombrePelicula() ?></h4>
+                            <h6>(<?php echo $funciones[0]->getSegundoNombrePelicula() ?>)</h6>
                         </div>
                         <div class="content">
                             <form>                                
@@ -44,19 +54,19 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Director</label>
-                                            <p>Steven Spielberg</p>
+                                            <p><?php echo $funciones[0]->getDirector() ?></p>
                                         </div>        
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Año</label>
-                                            <p>2004</p>
+                                            <p><?php echo $funciones[0]->getAnio() ?></p>
                                         </div>        
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Clasificación</label>
-                                            <p>Comedia</p>
+                                            <p><?php echo $funciones[0]->getClasificacion() ?></p>
                                         </div>        
                                     </div>
                                 </div>  
@@ -65,13 +75,13 @@
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <label>Actores</label>
-                                            <p>Tom Hanks, Catherine Zeta-Jones, Chi McBride</p>
+                                            <p><?php echo $funciones[0]->getActores() ?></p>
                                         </div>        
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label>Duración</label>
-                                            <p>128 min</p>
+                                            <p><?php echo $funciones[0]->getDuracion() ?></p>
                                         </div>        
                                     </div>
                                 </div>
@@ -81,72 +91,49 @@
                                         <div class="form-group">
                                             <label>Sinopsis</label>
                                             <p>
-                                                La película está basada en la historia real de Mehran Karimi Nasseri, un refugiado iraní que vivió en el Aeropuerto de París-Charles de Gaulle entre 1988 y 2006. Anteriormente a Spielberg, el director francés Philippe Lioret ya había adaptado al cine su historia en la película En tránsito.
+                                                <?php echo $funciones[0]->getSinopsis() ?>
                                             </p>                                           
                                         </div>        
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>Funciones</label>
-                                        </div>        
-                                    </div>                                 
-                                </div>
-
+    
                                 <div class="row">
                                      <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label>Polanco</label>
-                                            <a href=""><p>Vie 13 Nov, 9:30 pm $150</p></a>
+                                            <label><?php echo $funciones[0]->getSede() ?></label>
+											
+											<!--CAMBIAR LA REFERENCI APOR LA PÁGINA DE COMPRA -->
+                                            <a href=""><p><?php echo $funciones[0]->getFecha() ?>, $<?php echo $funciones[0]->getPrecio() ?>, <?php echo $funciones[0]->getDisponibilidad() ?> disponibles</p></a>
                                         </div>        
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <a href=""><p>Sab 14 Nov, 9:30 pm $150</p></a>
-                                        </div>        
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <a href=""><p>Dom 15 Nov, 9:30 pm $150</p></a>
-                                        </div>        
-                                    </div>                              
-                                </div>
-
-                                <div class="row">
-                                     <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Insurgentes</label>
-                                            <a href=""><p>Vie 13 Nov, 9:30 pm $150</p></a>
-                                        </div>        
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <a href=""><p>Dom 15 Nov, 9:30 pm $150</p></a>
-                                        </div>        
-                                    </div>                              
+                                    </div>                            
                                 </div>  
                                 <div class="clearfix"></div>
                             </form>
                         </div>
                     </div>
+					
+					<?php
+						}
+						else{
+							//AQUÍ SE REDIRECCIONA AL ERROR	
+						}
+					?>
+					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
                 </div>
+				
+				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->	
                 <div class="col-md-4">
                     <div class="card card-user mb">
                         <div class="image resimg">
-                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="QR"/>   
+                            <img src="<?php echo $funciones[0]->getImagen() ?>" alt="QR"/>   
                         </div>
                         <hr>
                         <div class="text-center">
-                            <a href="https://www.youtube.com/watch?v=HGOaj_IetHY"  target="_blank"><button class="btn btn-info btn-fill">Trailer</button></a>
+                            <a href="<?php echo $funciones[0]->getTrailer() ?>"  target="_blank"><button class="btn btn-info btn-fill">Trailer</button></a>
                         </div>
                     </div>
                 </div>
-
+				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
             </div>                    
         </div> 
     </section>

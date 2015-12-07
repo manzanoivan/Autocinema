@@ -103,7 +103,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Fecha</label>
-                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha" required>
+                                            <input pattern="\d{1,2}/\d{1,2}/\d{4}"  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha" required>
                                         </div>        
                                     </div>
                                     <div class="col-md-3">
@@ -118,7 +118,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Video(URL)</label>
-                                             <input type="url" class="form-control">
+                                             <input type="url" class="form-control" required>
                                         </div>        
                                     </div>
                                 </div>

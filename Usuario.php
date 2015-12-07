@@ -19,7 +19,7 @@
                 $this->id = $myArray[0]['id'];
                 $this->tipo = $myArray[0]['tipo'];
                 $this->username = $myArray[0]['username'];
-                $this->apellidos = $myArray[0]['username'];
+                $this->apellidos = $myArray[0]['apellidos'];
                 $this->nombre = $myArray[0]['nombre'];
                 $this->email = $myArray[0]['email'];
             }
