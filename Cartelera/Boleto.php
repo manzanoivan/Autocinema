@@ -1,84 +1,49 @@
 <?php
     require_once("Funcion.php");
-    class Usuario{
+    class Boleto{
         private $id;
-        private $funcion;
         private $fechaCompra;
         private $cantidad;
-        private $apellidos;
+        private $codigo;
         private $horaEntrada;
+        private $tipo;
+        private $fechaPago;
+        private $idFuncion;
 
-        function __construct( $user , $password ) 
+        function __construct( $myArray ) 
         { 
-            $link = conecta();
-            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username from usuario where username='".$user."' AND BINARY password='".$password."'";
-            $myArray = consultaUsuarios($sql1, $link);
-            desconecta($link);
-            
-            if(count($myArray) == 1 ){
-                $this->id = $myArray[0]['id'];
-                $this->tipo = $myArray[0]['tipo'];
-                $this->username = $myArray[0]['username'];
-                $this->apellidos = $myArray[0]['apellidos'];
-                $this->nombre = $myArray[0]['nombre'];
-                $this->email = $myArray[0]['email'];
-            }
-            else{
-                $this->id = NULL;
-                $this->tipo = NULL;
-                $this->username = NULL;
-                $this->apellidos = NULL;
-                $this->nombre = NULL;
-                $this->email = NULL;
-            }
-            
+            $this->id = $myArray[ 'id' ];
+            $this->fechaCompra = $myArray[ 'fechaCompra' ];
+            $this->cantidad = $myArray[ 'cantidad' ];
+            $this->codigo = $myArray[ 'codigo' ];
+            $this->horaEntrada = $myArray[ 'horaEntrada' ];
+            $this->tipo = $myArray[ 'tipo' ];
+            $this->fechaPago = $myArray[ 'fechaPago' ];
+            $this->idFuncion = $myArray[ 'idFuncion' ];           
         } 
         public function getId(){
             return $this->id;
         }
-
-        public function setId($id){
-            $this->id = $id;
+        public function getFechaCompra(){
+            return $this->fechaCompra;
         }
-
-        public function getUsername(){
-            return $this->username;
+        public function getCantidad(){
+            return $this->cantidad;
         }
-
-        public function setUsername($username){
-            $this->username = $username;
+        public function getCodigo(){
+            return $this->codigo;
         }
-
+        public function getHoraEntrada(){
+            return $this->horaEntrada;
+        }
         public function getTipo(){
             return $this->tipo;
         }
-
-        public function setTipo($tipo){
-            $this->tipo = $tipo;
+        public function getFechaPago(){
+            return $this->fechaPago;
         }
-
-        public function getNombre(){
-            return $this->nombre;
-        }
-
-        public function setNombre($nombre){
-            $this->nombre = $nombre;
-        }
-        
-        public function getApellidos(){
-            return $this->apellidos;
-        }
-
-        public function setApellidos($apellidos){
-            $this->apellidos = $apellidos;
-        }
-        
-        public function getEmail(){
-            return $this->email;
-        }
-
-        public function setEmail($email){
-            $this->email = $email;
+        public function getIdFuncion(){
+            return $this->idFuncion;
         }
         
     }

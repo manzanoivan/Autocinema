@@ -33,12 +33,9 @@
           <div class="col-lg-10 col-lg-offset-1">
             <div class="invoice-body">
               <div class="pull-left"> 
-                <h1>Autocinema</h1>
-                <address>
-                <strong>Sede</strong><br>
-                Miguel de Cervantes Saavedra 161, Miguel Hidalgo,<br>
-                 Granada, 11520 Ciudad de México, D.F.
-                </address>
+			  <br><br>
+                <h1>Cafetería</h1>
+
               </div><!-- /pull-left -->
               
               <div class="pull-right">
@@ -50,10 +47,7 @@
               <br>
               <br>
               <div class="row">
-                <div class="col-md-9">
-                  <h4>Juan Contreras</h4>
-                </div><!-- --/col-md-9 ---->
-                <div class="col-md-3"><br>
+               
                   <div>
                     <div class="pull-left"> Fecha Entrega : </div>
                     <div class="pull-right"> 15/03/14 </div>

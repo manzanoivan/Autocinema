@@ -85,7 +85,7 @@
         $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafeteria</a></li>"; 
+        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafetería</a></li>"; 
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Login<b class='caret'></b></a>"; 
         $menu .="		          <ul class='dropdown-menu'>"; 
@@ -127,7 +127,7 @@
         $menu .="		        <li><a href='".$carpeta."Cartelera/cartelera.php'>Cartelera</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>"; 
         $menu .="				<li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
-        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafeteria</a></li>"; 
+        $menu .="				<li><a href='".$carpeta."Cafeteria/cafeteria.php'>Cafetería</a></li>"; 
         $menu .="		        <li class='dropdown'>"; 
         $menu .="		          <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="		          <ul class='dropdown-menu'>"; 

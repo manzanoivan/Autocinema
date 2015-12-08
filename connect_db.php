@@ -42,6 +42,27 @@
         return $rawdata;
     }
 
+    function consultaBoletos($sql,$link){
+        mysqli_set_charset($link, "utf8");
+        if(!$result = mysqli_query($link,$sql)){ 
+            die();
+        }
+        $rawdata = array();
+        while($row = mysqli_fetch_array($result))
+        {
+            $rawdata[] = [ 'id' => $row['id'],
+                    'fechaCompra' => $row['fechaCompra'],
+                    'cantidad' => $row['cantidad'],
+                    'codigo' => $row['codigo'],
+                    'horaEntrada' => $row['horaEntrada'],
+                    'tipo' => $row['nombre'],
+                    'fechaPago' => $row['fechaPago'],
+                    'idFuncion' => $row['idFuncion'],
+                    ];
+        }
+        return $rawdata;
+    }
+    
     function insert($sql,$link){
         mysqli_set_charset($link, "utf8");
         if (!$result = mysqli_query($link, $sql)) {

@@ -8,8 +8,9 @@
 		private $precio;
 		private $idSede;
 		private $existencia;
+		private $sede;
 		
-		public function __construct($id2, $nombre2, $descripcion2, $precio2, $idSede2, $existencia2){
+		public function __construct($id2, $nombre2, $descripcion2, $precio2, $idSede2, $existencia2, $sede2){
 			
 			$this->id = $id2;
 			$this->nombre = $nombre2;
@@ -17,7 +18,7 @@
 			$this->precio = $precio2;
 			$this->idSede = $idSede2;
 			$this->existencia = $existencia2;
-		
+			$this->sede = $sede2;
 		}
 		
 		public function getId(){
@@ -66,7 +67,15 @@
 
 		public function setExistencia($existencia){
 			$this->existencia = $existencia;
-		}		
+		}	
+
+		public function getSede(){
+			return $this->sede;
+		}
+
+		public function setSede($sede){
+			$this->sede = $sede;
+		}	
 		
 	}
 	

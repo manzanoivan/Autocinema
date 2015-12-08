@@ -1,8 +1,7 @@
 <?php
 	require_once('ListaDeProductos.php');
-	$id = $_GET['id'];
-	$sede = $_GET['sede'];
-	if($id != null && $sede != null){
+	$pos = $_GET['pos'];
+	if($pos != null){
 		$usuario = NULL;
 		session_start();
 		if(isset( $_SESSION["Usuario"] ) ){
@@ -16,9 +15,11 @@
 			if(is_null($lista)){
 				$lista = array();
 			}
-			$auxiliar = new ListaDeProductos();
-			$lista[] = $auxiliar->getProductosWhere("productocafeteria.idProducto = ".$id." AND sede.idSede = ".$sede)[0];		
-			$_SESSION["carrito"] = $lista;
+			
+			unset($lista[$pos]);			
+			$_SESSION["carrito"] = array();
+			foreach($lista as $elemento)
+				$_SESSION["carrito"][] = $elemento;
 			
 			header('Location:cafeteria.php');
 		}  

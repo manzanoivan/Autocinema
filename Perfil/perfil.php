@@ -2,6 +2,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
+    require_once '../connect_db.php';
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -80,36 +81,51 @@
                       <div class="col-md-12 bg-white">
                         <div class="content-panel">
                           <hr>
-                          <table class="table table-striped table-advance table-hover">
-                            <thead>
-                              <tr>
-                                <th>Función</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td><a href="verboleto.jsp">La Terminal</a></td>
-                                <td>22 Nov</td>
-                                <td>9:30 pm</td>
-                              </tr>
-                              <tr>
-                                <td><a href="verboleto.jsp">Avengers</a></td>
-                                <td>30 Nov</td>
-                                <td>11:30 pm</td>
-                              </tr>
-                              <tr>
-                                <td><a href="verboleto.jsp">Maquina Enigma</a></td>
-                                <td>3 Dic</td>
-                                <td>7:00 pm</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div><!-- --/content-panel ---->
-                      </div>
-                    </div><!-- --/tab-pane ---->
-
+                            <?php
+                                $link = conecta();
+                                $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS nombre, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
+                                $myArray = consultaBoletos($sql1, $link);
+                                desconecta($link);
+                                if( count( $myArray ) == 0 ){
+                            ?>
+                                <h3>No has adquirido boletos</h3>
+                            <?php
+                                }
+                                else{
+                            ?>
+                                <table class="table table-striped table-advance table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Función</th>
+                                      <th>Fecha</th>
+                                      <th>Hora</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                        foreach ($myArray as $temp) {
+                                            $link = conecta();
+                                             $sql1 = "SELECT  FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
+                                            $myArray = consultaBoletos($sql1, $link);
+                                            desconecta($link);
+                                    ?>
+                                      
+                                        <tr>
+                                            <td><a href="verboleto.jsp">La Terminal</a></td>
+                                            <td>22 Nov</td>
+                                            <td>9:30 pm</td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                  </tbody>
+                                </table>
+                              </div><!-- --/content-panel ---->
+                            </div>
+                          </div><!-- --/tab-pane ---->
+                            <?php    
+                                }
+                            ?>
                     <div id="contact" class="tab-pane">
                       <div class="col-md-12 bg-white">
                         <div class="content-panel">

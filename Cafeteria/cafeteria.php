@@ -27,15 +27,41 @@
 	<section class="home-section product-section">
 		<div class="row mt bg-white">
 	        <div class="col-md-12">
-	          	<div class="content-panel grid">
-					<!-- Products -->
-					
+				<br><H3>Polanco</H3><br>
+	          	<div class="content-panel grid">					
 					<?php
 						$listaDeProductos = new ListaDeProductos();
-						$productos = $listaDeProductos->getProductosWhere("");
+						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 1");
 						foreach ($productos as $producto) {
+					?>					
+					<div class="product">
+						<div class="product__info">
+							<img class="product__image" src="../images/1.png" />
+							<h3 class="product__title"><?php echo $producto->getNombre();  ?></h3>
+							<span class="product__year extra highlight">2011</span>
+							<span class="product__region extra highlight">Douro</span>
+							<span class="product__varietal extra highlight">Touriga Nacional</span>
+							<span class="product__type extra highlight">1</span>
+							<span class="product__price highlight">$<?php echo $producto->getPrecio();  ?></span>
+							<a href="agregarProducto.php?id=<?php echo $producto->getId();?>&sede=<?php echo $producto->getIdSede();?>">
+								<button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i>Agregar</button>
+							</a>
+						</div>
+					</div>
+					
+					<?php
+						}
 					?>
 					
+				</div>
+				
+				<br><H3>Insurgentes Sur</H3><br>
+	          	<div class="content-panel grid">					
+					<?php
+						$listaDeProductos = new ListaDeProductos();
+						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 2");
+						foreach ($productos as $producto) {
+					?>					
 					<div class="product">
 						<div class="product__info">
 							<img class="product__image" src="../images/1.png" />
@@ -63,7 +89,6 @@
 	<div id="cd-shadow-layer"></div>
 
 	<div id="cd-cart">
-		<h2>Cart</h2>
 		<ul class="cd-cart-items">
 			<!--<li>
 				<span class="cd-qty">1x</span> Product Name
@@ -71,12 +96,34 @@
 				<a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
 			</li>-->
 		</ul> <!-- cd-cart-items -->
-
+		<?php 
+			$total = 0;
+			$productos = NULL;
+			if(isset( $_SESSION["carrito"] ) ){
+				$productos = $_SESSION['carrito']; 
+			}
+			if(!is_null($productos)){
+				$i = 0;
+				foreach($productos as $producto){
+					$total = $total + $producto->getPrecio();
+		?>
+			<div class="cd-cart-total">
+				<p>
+					<?php echo $producto->getSede();?> - <?php echo $producto->getNombre();?> <span>$<?php echo $producto->getPrecio();?></span><br>
+					<a href = "quitarProducto.php?pos=<?php echo $i;?>"> Quitar </a>
+				</p>
+			</div> 
+		<?php 
+				$i = $i + 1;
+				}
+			}
+		?>
 		<div class="cd-cart-total">
-			<p>Total <span>$0.00</span></p>
-		</div> <!-- cd-cart-total -->
-
-		<a href="compra.php" class="checkout-btn">Checkout</a>
+				<p>
+					<b>TOTAL</b> <span>$<?php echo $total ?></span>
+				</p>
+			</div>
+		<a href="compra.php" class="checkout-btn">Confirmar</a>
 	</div> <!-- cd-cart -->
 
     <?php

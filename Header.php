@@ -46,8 +46,6 @@
         $footer .="    <!-- Core JavaScript Files -->"; 
         $footer .="    <script src='".$carpeta."js/jquery.min.js'></script>"; 
         $footer .="    <script src='".$carpeta."js/bootstrap.min.js'></script>"; 
-        $footer .="    <script src='".$carpeta."js/jquery.easing.min.js'></script> "; 
-        $footer .="    <script src='".$carpeta."js/jquery.scrollTo.js'></script>"; 
         $footer .="    <script src='".$carpeta."js/wow.min.js'></script>"; 
         $footer .="    <!-- Custom Theme JavaScript -->"; 
         $footer .="    <script src='".$carpeta."js/custom.js'></script>"; 
