@@ -35,7 +35,40 @@
                 $this->sexo = NULL;
             }
             
-        } 
+        }
+        
+        public static function withId( $id ) 
+        { 
+            $instance = new self();
+            
+            $link = conecta();
+            $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username, idSexo from usuario where idUsuario=".$id."";
+            //echo $sql1;
+            $myArray = consultaUsuarios($sql1, $link);
+            desconecta($link);
+            
+            if(count($myArray) == 1 ){
+                $instance->id = $myArray[0]['id'];
+                $instance->tipo = $myArray[0]['tipo'];
+                $instance->username = $myArray[0]['username'];
+                $instance->apellidos = $myArray[0]['apellidos'];
+                $instance->nombre = $myArray[0]['nombre'];
+                $instance->email = $myArray[0]['email'];
+                $instance->sexo = $myArray[0]['sexo'];
+            }
+            else{
+                $instance->id = NULL;
+                $instance->tipo = NULL;
+                $instance->username = NULL;
+                $instance->apellidos = NULL;
+                $instance->nombre = NULL;
+                $instance->email = NULL;
+                $instance->sexo = NULL;
+            }
+            return $instance;
+            
+        }
+        
         public function getId(){
             return $this->id;
         }

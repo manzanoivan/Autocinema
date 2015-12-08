@@ -31,7 +31,7 @@
                     if( isset( $usuario ) && !is_null($usuario->getId()) ){
 
                 ?>
-                        <form class="form-login" action="index.html">
+                        <form class="form-login" method="POST" action="editarAction.php">
                           <h2 class="form-login-heading">Editar Perfil</h2>
                           <div class="login-wrap">
                               Nombre: <input class="form-control" placeholder="Nombre" autofocus="" name='nombre' type="text" value="<?php echo $usuario->getNombre(); ?>" required>
@@ -56,7 +56,7 @@
                               <hr>
                               Password: <input class="form-control" placeholder="Password" name='password' type="password">
                               <br>
-                              Confirmar password: <input class="form-control" placeholder="Password" name='password' type="password">
+                              Confirmar password: <input class="form-control" placeholder="Password" name='confirmacion' type="password">
                               <br>
                               
                               <label class="checkbox">

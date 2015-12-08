@@ -1,17 +1,10 @@
 <?php
     require_once("Usuario.php");
-    //require_once("validaciones.php");
 
     session_start();
 
-    $username = $_POST["user"];
-    $password = $_POST["password"];
-
-    //$username = validate( $username );
-    //$password = validate( $password );
-    
-    //$username = 'manzanoivan';
-    //$password = 'usuario';
+    $username = htmlspecialchars($_POST["user"] , ENT_QUOTES);
+    $password = htmlspecialchars($_POST["password"], ENT_QUOTES);
     
     $usuario = new Usuario( $username , $password );
     if(is_null($usuario->getId()) ){

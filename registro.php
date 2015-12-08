@@ -3,24 +3,27 @@
     require_once("connect_db.php");
     //require_once("validaciones.php");
     session_start();
-
-    $username = $_POST["usuario"];
-    $password = $_POST["password"];
-    $apellidos = $_POST['apellidos'];
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $sexo = $_POST['sexo'];
+    
+    if(is_null($_POST["usuario"]) ){
+        header("Location: ");
+    }
+    
+    $username = htmlspecialchars($_POST["usuario"] , ENT_QUOTES);
+    $password = htmlspecialchars($_POST["password"] , ENT_QUOTES);
+    $apellidos = htmlspecialchars($_POST["apellidos"] , ENT_QUOTES);
+    $nombre = htmlspecialchars($_POST["nombre"] , ENT_QUOTES);
+    $email = htmlspecialchars($_POST["email"] , ENT_QUOTES);
+    $sexo = htmlspecialchars($_POST["sexo"] , ENT_QUOTES);
 
     //$username = validate( $username );
     //$password = validate( $password );
     $link = conecta();
     $sql1 = "select idUsuario, nombre, apellidos, email, tipo, username from usuario where username='".$username."' OR email='".$email."'";
-    echo $sql1;
     $myArray = consultaUsuarios($sql1, $link);
     desconecta($link);
     
     if( count($myArray) > 0 ){
-        header("Location: login.php");
+        header("Location: signup.php");
     }
     else{
         $link = conecta();
@@ -34,7 +37,7 @@
             header("Location: Perfil/perfil.php");
         }
         else{
-            header("Location: login.php");
+            header("Location: signup.php");
         }
         
     }
