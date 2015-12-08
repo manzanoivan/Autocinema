@@ -36,8 +36,8 @@
             $titulo = "Registro exitoso";
             $headers = "MIME-Version: 1.0\r\n"; 
             $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
-            $headers .= "From: Geeky Theory < informacion@autocinema.hol.es >\r\n";
-            $bool = mail("manzanoivan@yopmail.com",$titulo,$mail,$headers);
+            $headers .= "From: Autocinema < informacion@autocinema.hol.es >\r\n";
+            $bool = mail($email,$titulo,$mail,$headers);
             if($bool){
                 echo "Mensaje enviado";
             }else{
