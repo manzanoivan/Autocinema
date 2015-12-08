@@ -32,6 +32,17 @@
         $insertar = insert($sql1, $link);
         desconecta($link);
         if( $insertar ){
+            $mail = "<h1>Bienvenido a la comunidad del autocinema</h1>\n Has sido registrado con el usuario: ".$username;
+            $titulo = "Registro exitoso";
+            $headers = "MIME-Version: 1.0\r\n"; 
+            $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+            $headers .= "From: Geeky Theory < informacion@autocinema.hol.es >\r\n";
+            $bool = mail("manzanoivan@yopmail.com",$titulo,$mail,$headers);
+            if($bool){
+                echo "Mensaje enviado";
+            }else{
+                echo "Mensaje no enviado";
+            }
             $usuario = new Usuario( $username , $password );
             $_SESSION['Usuario'] = $usuario;
             header("Location: Perfil/perfil.php");
