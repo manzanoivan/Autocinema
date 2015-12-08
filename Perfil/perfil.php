@@ -81,20 +81,21 @@
                       <div class="col-md-12 bg-white">
                         <div class="content-panel">
                           <hr>
-                            <?php
-                                $link = conecta();
-                                $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS nombre, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
-                                $myArray = consultaBoletos($sql1, $link);
-                                desconecta($link);
-                                if( count( $myArray ) == 0 ){
-                            ?>
-                                <h3>No has adquirido boletos</h3>
-                            <?php
-                                }
-                                else{
-                            ?>
-                                <table class="table table-striped table-advance table-hover">
-                                  <thead>
+                            <table class="table table-striped table-advance table-hover">
+                                <?php
+                                    $link = conecta();
+                                    $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS nombre, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
+                                    $myArray = consultaBoletos($sql1, $link);
+                                    desconecta($link);
+
+                                    if( count( $myArray ) == 0 ){
+                                ?>
+                                    <h3>No has adquirido boletos</h3>
+                                <?php
+                                    }
+                                    else{
+                                ?>  
+                                <thead>
                                     <tr>
                                       <th>Función</th>
                                       <th>Fecha</th>
@@ -104,10 +105,10 @@
                                   <tbody>
                                     <?php
                                         foreach ($myArray as $temp) {
-                                            $link = conecta();
-                                             $sql1 = "SELECT  FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
+                                            /*$link = conecta();
+                                            $sql1 = "SELECT * FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
                                             $myArray = consultaBoletos($sql1, $link);
-                                            desconecta($link);
+                                            desconecta($link);*/
                                     ?>
                                       
                                         <tr>
