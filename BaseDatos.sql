@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`productoCafeteria` (
   `nombre` VARCHAR(100) NULL COMMENT '',
   `descripcion` VARCHAR(500) NULL COMMENT '',
   `precio` FLOAT NULL COMMENT '',
+  `imagen` LONGBLOB NULL COMMENT '',
   PRIMARY KEY (`idProducto`)  COMMENT '')
 ENGINE = InnoDB;
 
@@ -438,9 +439,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`) VALUES (1, 'Palomitas Medianas', 'Palomitas Medianas', 35.00);
-INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`) VALUES (2, 'Té Helado', 'Té', 30.00);
-INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`) VALUES (3, 'Hot Dog', 'Hot dog', 45.00);
+INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`, `imagen`) VALUES (1, 'Palomitas Medianas', 'Palomitas Medianas', 35.00, NULL);
+INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`, `imagen`) VALUES (2, 'Té Helado', 'Té', 30.00, NULL);
+INSERT INTO `autocinema`.`productoCafeteria` (`idProducto`, `nombre`, `descripcion`, `precio`, `imagen`) VALUES (3, 'Hot Dog', 'Hot dog', 45.00, NULL);
 
 COMMIT;
 
