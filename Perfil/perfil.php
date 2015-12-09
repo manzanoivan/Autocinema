@@ -1,5 +1,6 @@
 <?php
     require_once("../Usuario.php");
+    require_once("../Cartelera/Boleto.php");
     require_once ("../menu.php");
     require_once '../Header.php';
     require_once '../connect_db.php';
@@ -84,7 +85,7 @@
                             <table class="table table-striped table-advance table-hover">
                                 <?php
                                     $link = conecta();
-                                    $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS nombre, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
+                                    $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS nombre, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId(). " ORDER BY boleto.fechaCompra DESC";
                                     $myArray = consultaBoletos($sql1, $link);
                                     desconecta($link);
 
@@ -105,28 +106,29 @@
                                   <tbody>
                                     <?php
                                         foreach ($myArray as $temp) {
-                                            /*$link = conecta();
-                                            $sql1 = "SELECT * FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId();
-                                            $myArray = consultaBoletos($sql1, $link);
-                                            desconecta($link);*/
+                                          $ticket = new Boleto( $temp );
+                                          $time = new DateTime($ticket->getFuncion()[0]->getFecha());
+                                          $date = $time->format('j-n-Y');
+                                          $time = $time->format('H:i:s');
                                     ?>
                                       
                                         <tr>
-                                            <td><a href="verboleto.jsp">La Terminal</a></td>
-                                            <td>22 Nov</td>
-                                            <td>9:30 pm</td>
+                                            <td><a href="verboleto.jsp"><?php echo $ticket->getFuncion()[0]->getNombrePelicula();?></a></td>
+                                            <td><?php echo $date;?></td>
+                                            <td><?php echo $time;?></td>
                                         </tr>
                                     <?php
                                         }
                                     ?>
                                   </tbody>
-                                </table>
-                              </div><!-- --/content-panel ---->
-                            </div>
-                          </div><!-- --/tab-pane ---->
+                                
                             <?php    
                                 }
                             ?>
+                          </table>
+                        </div><!-- --/content-panel ---->
+                      </div>
+                    </div><!-- --/tab-pane ---->
                     <div id="contact" class="tab-pane">
                       <div class="col-md-12 bg-white">
                         <div class="content-panel">

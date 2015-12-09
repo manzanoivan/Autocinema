@@ -1,4 +1,5 @@
 <?php
+    require_once("ListaDeFunciones.php");
     require_once("Funcion.php");
     class Boleto{
         private $id;
@@ -9,6 +10,7 @@
         private $tipo;
         private $fechaPago;
         private $idFuncion;
+        private $funcion;
 
         function __construct( $myArray ) 
         { 
@@ -19,7 +21,9 @@
             $this->horaEntrada = $myArray[ 'horaEntrada' ];
             $this->tipo = $myArray[ 'tipo' ];
             $this->fechaPago = $myArray[ 'fechaPago' ];
-            $this->idFuncion = $myArray[ 'idFuncion' ];           
+            $this->idFuncion = $myArray[ 'idFuncion' ];  
+            $lista = new ListaDeFunciones();
+            $this->funcion = $lista->getFuncionesWhere("idFuncion = ".$myArray[ 'idFuncion' ]);
         } 
         public function getId(){
             return $this->id;
@@ -45,6 +49,10 @@
         public function getIdFuncion(){
             return $this->idFuncion;
         }
+        public function getFuncion(){
+            return $this->funcion;
+        }
+
         
     }
 ?>

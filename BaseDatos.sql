@@ -489,10 +489,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (1, '1-1-2016 7:00:00', 1, 250, 50, 1);
-INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (2, '2-1-2016 8:00:00', 2, 250, 50, 2);
-INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (3, '3-1-2016 8:00:00', 3, 250, 50, 1);
-INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (4, '4-1-2016 6:00:00', 4, 400, 50, 2);
+INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (1, '2016-1-1 19:00:00', 1, 250, 50, 1);
+INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (2, '2016-1-2 20:00:00', 2, 250, 50, 2);
+INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (3, '2016-1-3 20:00:00', 3, 250, 50, 1);
+INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (4, '2016-1-4 18:00:00', 4, 400, 50, 2);
 
 COMMIT;
 
@@ -513,8 +513,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (1, 2, 1, 0, '3-12-2015 8:00:00');
-INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (2, 3, 2, 3, '3-12-2015 7:00:00');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (1, 2, 1, 0, '2015-12-3 8:00:00');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (2, 3, 2, 3, '2015-12-3 7:00:00');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (3, 3, 1, 0, '2015-12-4 9:00:00');
 
 COMMIT;
 
@@ -524,9 +525,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (1, 1, '3-12-2015 8:00:00', 1, 'abcdefg', 1, NULL);
-INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (2, 3, '3-12-2015 8:00:00', 1, 'hijklmno', 2, NULL);
-INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (3, 4, '3-12-2015 8:01:00', 1, 'pqrstuvw', 2, NULL);
+INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (1, 1, '2015-12-3 8:00:00', 1, 'abcdefg', 1, NULL);
+INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (2, 3, '2015-12-3 8:00:00', 1, 'hijklmno', 2, NULL);
+INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (3, 4, '2015-12-3 8:01:00', 1, 'pqrstuvw', 2, NULL);
+INSERT INTO `autocinema`.`boleto` (`idBoleto`, `idFuncion`, `fechaCompra`, `cantidad`, `codigo`, `idPagoBoleto`, `horaEntrada`) VALUES (4, 2, '2015-12-4 19:00:00', 1, 'abcd', 3, NULL);
 
 COMMIT;
 
