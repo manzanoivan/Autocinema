@@ -17,7 +17,7 @@
 				$lista = array();
 			}
 			$auxiliar = new ListaDeProductos();
-			$lista[] = $auxiliar->getProductosWhere("productocafeteria.idProducto = ".$id." AND sede.idSede = ".$sede)[0];		
+			$lista[] = $auxiliar->getProductosWhere("productoCafeteria.idProducto = ".$id." AND sede.idSede = ".$sede)[0];		
 			$_SESSION["carrito"] = $lista;
 			
 			header('Location:cafeteria.php');
