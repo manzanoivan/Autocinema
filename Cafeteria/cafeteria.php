@@ -123,7 +123,7 @@
 					<b>TOTAL</b> <span>$<?php echo $total ?></span>
 				</p>
 			</div>
-		<a href="compra.php" class="checkout-btn">Confirmar</a>
+		<a href="checkOut.php" class="checkout-btn">Confirmar</a>
 	</div> <!-- cd-cart -->
 
     <?php
