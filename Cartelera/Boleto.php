@@ -9,6 +9,8 @@
         private $horaEntrada;
         private $tipo;
         private $fechaPago;
+        private $nombre;
+        private $referencia;
         private $idFuncion;
         private $funcion;
 
@@ -21,9 +23,11 @@
             $this->horaEntrada = $myArray[ 'horaEntrada' ];
             $this->tipo = $myArray[ 'tipo' ];
             $this->fechaPago = $myArray[ 'fechaPago' ];
-            $this->idFuncion = $myArray[ 'idFuncion' ];  
+            $this->idFuncion = $myArray[ 'idFuncion' ]; 
+            $this->nombre = $myArray['nombre'];
+            $this->referencia = $myArray[ 'referencia' ]; 
             $lista = new ListaDeFunciones();
-            $this->funcion = $lista->getFuncionesWhere("idFuncion = ".$myArray[ 'idFuncion' ]);
+            $this->funcion = $lista->getFuncionesWhere("idFuncion = ".$myArray[ 'idFuncion' ])[0];
         } 
         public function getId(){
             return $this->id;
@@ -51,6 +55,12 @@
         }
         public function getFuncion(){
             return $this->funcion;
+        }
+        public function getNombre(){
+            return $this->nombre;
+        }
+        public function getReferencia(){
+            return $this->referencia;
         }
 
         

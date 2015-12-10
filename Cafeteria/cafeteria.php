@@ -105,12 +105,12 @@
 			if(!is_null($productos)){
 				$i = 0;
 				foreach($productos as $producto){
-					$total = $total + $producto->getPrecio();
+					$total = $total + ($producto[0]->getPrecio()*$producto[1]);
 		?>
 			<div class="cd-cart-total">
 				<p>
-					<?php echo $producto->getSede();?> - <?php echo $producto->getNombre();?> <span>$<?php echo $producto->getPrecio();?></span><br>
-					<a href = "quitarProducto.php?pos=<?php echo $i;?>"> Quitar </a>
+					<?php echo $producto[0]->getSede();?> - <?php echo $producto[0]->getNombre();?> x <?php echo $producto[1];?> <span>Total - $<?php echo $producto[0]->getPrecio()*$producto[1];?></span><br>
+					<a href = "quitarProducto.php?pos=<?php echo $i;?>"> Quitar Todos </a> - <a href = "quitarUno.php?pos=<?php echo $i;?>"> Quitar Uno </a>
 				</p>
 			</div> 
 		<?php 

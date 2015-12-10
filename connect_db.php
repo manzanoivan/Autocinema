@@ -55,14 +55,50 @@
                     'cantidad' => $row['cantidad'],
                     'codigo' => $row['codigo'],
                     'horaEntrada' => $row['horaEntrada'],
-                    'tipo' => $row['nombre'],
+                    'tipo' => $row['tipo'],
                     'fechaPago' => $row['fechaPago'],
                     'idFuncion' => $row['idFuncion'],
+                    'nombre' => $row['nombre'],
+                    'referencia' => $row['referencia']
                     ];
         }
         return $rawdata;
     }
     
+    function consultaTicket($sql,$link){
+        mysqli_set_charset($link, "utf8");
+        if(!$result = mysqli_query($link,$sql)){ 
+            die();
+        }
+        $rawdata = array();
+        while($row = mysqli_fetch_array($result))
+        {
+            $rawdata[] = [ 'id' => $row['idCompra'],
+                    'fechaPago' => $row['fechaPago'],
+                    'fechaEntrega' => $row['fechaEntrega'],
+                    'referencia' => $row['referencia'],
+                    'nombre' => $row['nombre'],
+                    ];
+        }
+        return $rawdata;
+    }
+
+    function consultaListado($sql,$link){
+        mysqli_set_charset($link, "utf8");
+        if(!$result = mysqli_query($link,$sql)){ 
+            die();
+        }
+        $rawdata = array();
+        while($row = mysqli_fetch_array($result))
+        {
+            $rawdata[] = [ 'cantidad' => $row['cantidad'],
+                    'precio' => $row['precio'],
+                    'nombre' => $row['nombre']
+                    ];
+        }
+        return $rawdata;
+    }
+
     function insert($sql,$link){
         mysqli_set_charset($link, "utf8");
         if (!$result = mysqli_query($link, $sql)) {

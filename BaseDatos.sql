@@ -189,6 +189,8 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`pagoBoleto` (
   `idTipoPago` INT NOT NULL COMMENT '',
   `boletosRestantes` INT NULL COMMENT '',
   `fechaPago` DATETIME NULL COMMENT '',
+  `nombre` VARCHAR(800) NULL COMMENT '',
+  `referencia` VARCHAR(500) NULL COMMENT '',
   PRIMARY KEY (`idPago`)  COMMENT '',
   INDEX `fk_pago_usuario1_idx` (`idUsuario` ASC)  COMMENT '',
   INDEX `fk_pagoBoleto_tipoPago1_idx` (`idTipoPago` ASC)  COMMENT '',
@@ -265,6 +267,7 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`detalleCompra` (
   `idCompra` BIGINT(20) NOT NULL COMMENT '',
   `idProducto` BIGINT(20) NOT NULL COMMENT '',
   `cantidad` INT NULL COMMENT '',
+  `precioUnitario` FLOAT NULL COMMENT '',
   PRIMARY KEY (`idCompra`, `idProducto`)  COMMENT '',
   INDEX `fk_compraCafeteria_has_productosCafeteria_productosCafeteri_idx` (`idProducto` ASC)  COMMENT '',
   INDEX `fk_compraCafeteria_has_productosCafeteria_compraCafeteria1_idx` (`idCompra` ASC)  COMMENT '',
@@ -513,9 +516,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (1, 2, 1, 0, '2015-12-3 8:00:00');
-INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (2, 3, 2, 3, '2015-12-3 7:00:00');
-INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`) VALUES (3, 3, 1, 0, '2015-12-4 9:00:00');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`, `nombre`, `referencia`) VALUES (1, 2, 1, 0, '2015-12-3 8:00:00', 'Iván Manzano', '123456');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`, `nombre`, `referencia`) VALUES (2, 3, 2, 3, '2015-12-3 7:00:00', 'Sergio Juárez', 'abcdefg');
+INSERT INTO `autocinema`.`pagoBoleto` (`idPago`, `idUsuario`, `idTipoPago`, `boletosRestantes`, `fechaPago`, `nombre`, `referencia`) VALUES (3, 3, 1, 0, '2015-12-4 9:00:00', 'Tarjeta de otra persona', 'a1b2c3d4');
 
 COMMIT;
 
@@ -549,8 +552,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`) VALUES (1, 1, 2);
-INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`) VALUES (1, 3, 2);
+INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`, `precioUnitario`) VALUES (1, 1, 2, 6);
+INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`, `precioUnitario`) VALUES (1, 3, 2, 30);
 
 COMMIT;
 

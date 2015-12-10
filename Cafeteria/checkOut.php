@@ -2,6 +2,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
+	require_once('ListaDeProductos.php');
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -37,25 +38,39 @@
                         <table class="table">
                             <thead>
                             <tr>
-                            <th style="width:60px" class="text-center">QTY</th>
+                            <th style="width:60px" class="text-center">#</th>
                             <th class="text-left">DESCRIPCIÓN</th>
                             <th class="text-right">PRECIO UNITARIO</th>
                             <th class="text-right">TOTAL</th>
                             </tr>
                             </thead>
                               <tbody>
+							  
+								<?php 
+									$total = 0;
+									$productos = NULL;
+									if(isset( $_SESSION["carrito"] ) ){
+										$productos = $_SESSION['carrito']; 
+									}
+									if(!is_null($productos)){
+										$i = 0;
+										foreach($productos as $producto){
+											$total = $total + ($producto[0]->getPrecio()*$producto[1]);
+								?>
+								
                                 <tr>
-                                <td class="text-center">1</td>
-                                <td>Palomitas Grandes</td>
-                                <td class="text-right">$60.00</td>
-                                <td class="text-right">$60.00</td>
+                                <td class="text-center"><?php echo $producto[1];?></td>
+                                <td><?php echo $producto[0]->getSede();?> - <?php echo $producto[0]->getNombre();?></td>
+                                <td class="text-right">$<?php echo $producto[0]->getPrecio();?></td>
+                                <td class="text-right">$<?php echo $producto[0]->getPrecio()*$producto[1];?></td>
                                 </tr>
-                                <tr>
-                                <td class="text-center">2</td>
-                                <td>Refrescos Grandes</td>
-                                <td class="text-right">$40.00</td>
-                                <td class="text-right">$80.00</td>
-                                </tr>
+                               
+								<?php 
+										$i = $i + 1;
+										}
+									}
+								?>
+							   
                                 <tr>
                                 <td colspan="2" rowspan="4"><h4></h4>
                                   <p></p>
@@ -63,7 +78,7 @@
                                 </tr>
                                 <tr>
                                 <td class="text-right no-border"><strong>Total</strong></td>
-                                <td class="text-right">$140.00</td>
+                                <td class="text-right">$<?php echo $total;?></td>
                                 </tr>
                               </tbody>
                           </table>

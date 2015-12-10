@@ -7,7 +7,7 @@
 		session_start();
 		if(isset( $_SESSION["Usuario"] ) ){
 			$usuario = $_SESSION["Usuario"];
-		}  	
+		}
 		if(!is_null( $usuario )){
 			$lista = NULL;
 			if(isset( $_SESSION["carrito"] ) ){
@@ -16,8 +16,19 @@
 			if(is_null($lista)){
 				$lista = array();
 			}
-			$auxiliar = new ListaDeProductos();
-			$lista[] = $auxiliar->getProductosWhere("productoCafeteria.idProducto = ".$id." AND sede.idSede = ".$sede)[0];		
+			$registrado = false;
+			$limite = count($lista);
+			
+			for($i = 0; $i < $limite; $i = $i + 1){
+				if($lista[$i][0]->getId() == $id){
+					$registrado = true;
+					$lista[$i][1] ++;
+				}
+			}
+			if($registrado == false){
+				$auxiliar = new ListaDeProductos();
+				$lista[] = array($auxiliar->getProductosWhere("productoCafeteria.idProducto = ".$id." AND sede.idSede = ".$sede)[0],1);	
+			}	
 			$_SESSION["carrito"] = $lista;
 			
 			header('Location:cafeteria.php');
