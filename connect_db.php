@@ -83,7 +83,7 @@
         return $rawdata;
     }
 
-    function consultaListado($sql,$link){
+    function consultaListadoProductos($sql,$link){
         mysqli_set_charset($link, "utf8");
         if(!$result = mysqli_query($link,$sql)){ 
             die();
@@ -93,7 +93,8 @@
         {
             $rawdata[] = [ 'cantidad' => $row['cantidad'],
                     'precio' => $row['precio'],
-                    'nombre' => $row['nombre']
+                    'nombre' => $row['nombre'],
+                    'id' => $row['id']
                     ];
         }
         return $rawdata;

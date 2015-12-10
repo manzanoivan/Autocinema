@@ -64,14 +64,20 @@
               <?php
                     }
                     else{
-              ?>        $ticket = new TicketCafeteria( $myArray[0] );
+                            $ticket = new TicketCafeteria( $myArray[0] );
+                            $date = "--------";
+                            $time = "--------";
+                            if( !is_null($ticket->getFechaEntrega()) ){
+                                $time = new DateTime($ticket->getFechaEntrega());
+                                $date = $time->format('j/n/Y');
+                                $time = $time->format('H:i');
+                            }
+                            
+
+              ?>            
                             <div class="pull-left">
 
                               <h1>Autocinema</h1>
-                              <address>
-                              <strong>Sede</strong><br>
-                              <?php  ?>
-                              </address>
                             </div><!-- /pull-left -->
                             
                             <div class="pull-right">
@@ -84,23 +90,28 @@
                             <br>
                             <div class="row">
                               <div class="col-md-9">
-                                <h4>Juan Contreras</h4>
+                                <h4><?php echo $ticket->getNombre();?></h4>
                               </div><!-- --/col-md-9 ---->
                               <div class="col-md-3"><br>
                                 <div>
-                                  <div class="pull-left"> Fecha Entrega : </div>
-                                  <div class="pull-right"> 15/03/14 </div>
+                                  <div class="pull-left"> Fecha Entrega :</div>
+                                  <div class="pull-right"> <?php echo $date;?> </div>
                                   <div class="clearfix"></div>
                                 </div>
                               <div><!-- /col-md-3 -->
                               <div class="pull-left"> Hora Entrega : </div>
-                              <div class="pull-right"> 8:30 pm</div>
+                              <div class="pull-right"> <?php echo $time; ?></div>
                               <div class="clearfix"></div>
                             </div><!-- --/row ---->
                             <br>
                             <div class="well well-small green">
-                              <div class="pull-left"> Forma Pago : </div>
-                              <div class="pull-right"> Tarjeta </div>
+                              <div class="pull-left"> Fecha de Pago : </div>
+                              <div class="pull-right"><?php
+                                  $time2 = new DateTime($ticket->getFechaPago());
+                                  $date2 = $time2->format('j/n/Y');
+                                  $time2 = $time2->format('H:i');
+                                  echo $date2."  ".$time2;
+                              ?></div>
                               <div class="clearfix"></div>
                             </div>
                           </div><!-- /invoice-body -->
@@ -115,18 +126,16 @@
                           </tr>
                           </thead>
                             <tbody>
-                              <tr>
-                              <td class="text-center">1</td>
-                              <td>Palomitas Grandes</td>
-                              <td class="text-right">$60.00</td>
-                              <td class="text-right">$60.00</td>
-                              </tr>
-                              <tr>
-                              <td class="text-center">2</td>
-                              <td>Refrescos Grandes</td>
-                              <td class="text-right">$40.00</td>
-                              <td class="text-right">$80.00</td>
-                              </tr>
+                              <?php 
+                                  $suma = 0;
+                                  foreach ($ticket->getProductos() as $temp): ?>
+                                  <tr>
+                                    <td class="text-center"><?php echo $temp['cantidad'];?></td>
+                                    <td><?php echo $temp['nombre']?></td>
+                                    <td class="text-right">$<?php echo $temp['precio'];?></td>
+                                    <td class="text-right">$<?php $suma += $temp['cantidad']*$temp['precio']; echo $temp['cantidad']*$temp['precio'];?></td>
+                                  </tr>
+                              <?php endforeach ?>
                               <tr>
                               <td colspan="2" rowspan="4"><h4></h4>
                                 <p></p>
@@ -134,7 +143,7 @@
                               </tr>
                               <tr>
                               <td class="text-right no-border"><strong>Total</strong></td>
-                              <td class="text-right">$140.00</td>
+                              <td class="text-right">$<?php echo $suma;?></td>
                               </tr>
                             </tbody>
                         </table>

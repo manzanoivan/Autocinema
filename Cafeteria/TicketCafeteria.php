@@ -1,5 +1,5 @@
 <?php
-    require_once '../connect_db.php';
+    require_once("../connect_db.php");
     class TicketCafeteria{
         private $id;
         private $fechaPago;
@@ -8,11 +8,12 @@
         private $nombre;
         private $productos;
 
-        public static function listadoProductos( $idCompra ){
+        private function listadoProductos( $idCompra ){
             $link = conecta();
-            $sql1 = "SELECT detalle.cantidad AS cantidad, detalle.precioUnitario AS precio, producto.nombre AS nombre  FROM detalleCompra detalle, productoCafeteria producto WHERE detalle.idProducto=producto.idProducto AND detalle.idCompra=".$idCompra;
+            $sql1 = "SELECT producto.idProducto AS id , detalle.cantidad AS cantidad, detalle.precioUnitario AS precio, producto.nombre AS nombre  FROM detalleCompra detalle, productoCafeteria producto WHERE detalle.idProducto=producto.idProducto AND detalle.idCompra=".$idCompra;
             $myArray = consultaListadoProductos($sql1, $link);
             desconecta($link);
+
             return $myArray;
         }
 
@@ -23,7 +24,7 @@
             $this->fechaEntrega = $myArray[ 'fechaEntrega' ];
             $this->referencia = $myArray[ 'referencia' ];
             $this->nombre = $myArray[ 'nombre' ];
-            //$this->productos = listadoProductos( $this->id );
+            $this->productos = $this->listadoProductos( $this->id );
         } 
         public function getId(){
             return $this->id;

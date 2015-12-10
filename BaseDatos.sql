@@ -541,8 +541,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (1, 2, '1-1-2016 8:10:00', 'textoreferencia', 'Iván Manzano', NULL);
-INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (2, 3, '2-1-2016 9:00:00', 'referenciadePago', 'Sergio Juárez', NULL);
+INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (1, 2, '2016-1-1 8:10:00', 'textoreferencia', 'Iván Manzano', NULL);
+INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (2, 3, '2016-2-1 9:00:00', 'referenciadePago', 'Sergio Juárez', '2016-2-1 10:00:00');
 
 COMMIT;
 
@@ -554,6 +554,7 @@ START TRANSACTION;
 USE `autocinema`;
 INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`, `precioUnitario`) VALUES (1, 1, 2, 6);
 INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`, `precioUnitario`) VALUES (1, 3, 2, 30);
+INSERT INTO `autocinema`.`detalleCompra` (`idCompra`, `idProducto`, `cantidad`, `precioUnitario`) VALUES (2, 1, 3, 40);
 
 COMMIT;
 
@@ -580,6 +581,7 @@ INSERT INTO `autocinema`.`disponibilidadProducto` (`idProducto`, `idSede`, `exis
 INSERT INTO `autocinema`.`disponibilidadProducto` (`idProducto`, `idSede`, `existencia`) VALUES (1, 2, 50);
 INSERT INTO `autocinema`.`disponibilidadProducto` (`idProducto`, `idSede`, `existencia`) VALUES (2, 1, 30);
 INSERT INTO `autocinema`.`disponibilidadProducto` (`idProducto`, `idSede`, `existencia`) VALUES (2, 2, 20);
+INSERT INTO `autocinema`.`disponibilidadProducto` (`idProducto`, `idSede`, `existencia`) VALUES (3, 1, 2);
 
 COMMIT;
 
