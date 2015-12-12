@@ -1,0 +1,215 @@
+<?php
+    require_once("../Usuario.php");
+    require_once ("../menu.php");
+    require_once '../Header.php';
+    require_once '../connect_db.php';
+    session_start();
+    $usuario = NULL;
+    if(isset( $_SESSION["Usuario"] ) ){
+        $usuario = $_SESSION["Usuario"];
+    }
+?>
+<!DOCTYPE html>
+<html>
+<?php
+    echo getHeader(1);
+?>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+
+  <?php
+    echo setMenu( $usuario , 1, false);
+  ?>
+
+    <section id="tables" class="home-section">
+      <div class="row mt bg-white">
+        <div class="col-md-12">
+          <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i>Inventario</h4><h7><a href="agregar.jsp"><i class="fa fa-plus-square"></i> Agregar Producto</h4></a><hr>
+            <table class="table table-striped table-advance table-hover">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Sucursal</th>          
+                <th>Precio</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="verproducto.jsp">Palomitas Chicas</a></td>
+                <td>Insurgentes</td>
+                <td>$30.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Kit Kat</a></td>
+                <td>Insurgentes</td>
+                <td>$20.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Crucnch</a></td>
+                <td>Polanco</td>
+                <td>$20.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Hot Dog</a></td>
+                <td>Polanco</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Paleta Magnum</a></td>
+                <td>Insurgentes</td>
+                <td>$22.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Nerds</a></td>
+                <td>Polanco</td>
+                <td>$10.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Refresco Grande</a></td>
+                <td>Insurgentes</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Malteada</a></td>
+                <td>Insurgentes</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Fuze Tea</a></td>
+                <td>Polanco</td>
+                <td>$30.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Palomitas Chicas</a></td>
+                <td>Insurgentes</td>
+                <td>$30.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Kit Kat</a></td>
+                <td>Insurgentes</td>
+                <td>$20.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Crucnch</a></td>
+                <td>Polanco</td>
+                <td>$20.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Hot Dog</a></td>
+                <td>Polanco</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Paleta Magnum</a></td>
+                <td>Insurgentes</td>
+                <td>$22.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Nerds</a></td>
+                <td>Polanco</td>
+                <td>$10.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Refresco Grande</a></td>
+                <td>Insurgentes</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Malteada</a></td>
+                <td>Insurgentes</td>
+                <td>$25.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="verproducto.jsp">Fuze Tea</a></td>
+                <td>Polanco</td>
+                <td>$30.00</td>
+                <td>
+                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- /content-panel -->
+      </div><!-- /col-md-12 -->
+    </div>
+  </section>
+
+  <?php
+    echo getScripts(1);
+  ?>
+</body>
+</html>

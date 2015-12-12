@@ -14,7 +14,7 @@
         $_SESSION['Usuario'] = $usuario;
         switch ($usuario->getTipo()) {
             case 1:
-                header("Location: SinUtilizar/info3.html");
+                header("Location: Perfil/perfilAdmin.php");
                 break;
             case 2:
                 header("Location: Perfil/perfil.php");
