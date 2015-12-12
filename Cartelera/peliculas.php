@@ -30,115 +30,51 @@
       <div class="row mt bg-white">
         <div class="col-md-12">
           <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i>Inventario</h4><h7><a href="agregar.jsp"><i class="fa fa-plus-square"></i> Agregar Película</h4></a><hr>
-            <table class="table table-striped table-advance table-hover">
-            <thead>
-              <tr>
-                <th>Pelicula</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>  
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>  
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>  
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>  
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>  
-              <tr>
-                <td><a href="verproducto.jsp">Daredevil</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="verproducto.jsp">Divergente</a></td>
-                <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                  <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                </td>
-              </tr>            
-            </tbody>
-          </table>
+            <?php
+                if( !isset( $usuario ) || is_null($usuario->getId()) || $usuario->getTipo() != 1 ){
+            ?>        
+                <br>
+                <h3>No tienes autorización para ver ésta página</h3>
+            <?php
+                }
+                else{
+            ?>
+                <br>
+                <h4><i class="fa fa-angle-right"></i>Películas</h4><h7><a href="agregarFuncion.php"><i class="fa fa-plus-square"></i> Agregar Película</h4></a><hr>
+                <table class="table table-striped table-advance table-hover">
+                <thead>
+                  <tr>
+                    <th>Película</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="revisarfuncion.php?id=1">Daredevil</a></td>
+                    <td>
+                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="revisarfuncion.php?id=1">Divergente</a></td>
+                    <td>
+                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="revisarfuncion.php?id=1">Daredevil</a></td>
+                    <td>
+                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                    </td>
+                  </tr>           
+                </tbody>
+              </table>
+          <?php
+              }
+          ?>
         </div><!-- /content-panel -->
       </div><!-- /col-md-12 -->
     </div>
