@@ -5,6 +5,7 @@
 		private $id;
 		private $fecha;
 		private $nombrePelicula;
+		private $idPelicula;
 		private $segundoNombrePelicula;
 		private $sinopsis;
 		private $director;
@@ -18,7 +19,7 @@
 		private $disponibilidad;
 		private $sede;
 		
-		public function __construct($id2, $fecha2, $nombrePelicula2, $segundoNombrePelicula2, $sinopsis2, $director2, $anio2, $actores2, $duracion2, $trailer2, $clasificacion2, $imagen2, $precio2, $disponibilidad2, $sede2) {
+		public function __construct($id2, $fecha2, $idPel,$nombrePelicula2, $segundoNombrePelicula2, $sinopsis2, $director2, $anio2, $actores2, $duracion2, $trailer2, $clasificacion2, $imagen2, $precio2, $disponibilidad2, $sede2) {
 			$this->id = $id2;
 			$this->fecha = $fecha2;
 			$this->nombrePelicula = $nombrePelicula2;
@@ -34,10 +35,15 @@
 			$this->precio = $precio2;
 			$this->disponibilidad = $disponibilidad2;
 			$this->sede = $sede2;
+			$this->idPelicula = $idPel;
 		}
 		
 		public function getId(){
 				return $this->id;
+		}
+
+		public function getIdPelicula(){
+				return $this->idPelicula;
 		}
 
 		public function setId($id){

@@ -7,7 +7,7 @@
 		
 		public function getFuncionesWhere($whereQuery){
 			$lista = array();
-			$query = "SELECT idFuncion, fecha, pelicula.nombre AS nombreP, segundoNombre, sinopsis, director, anio, actores, duracion, trailer, clasificacion.nombre AS nombreC, imagen, precio, disponibilidad, sede.nombre AS nombreS FROM funcion, pelicula, clasificacion, sede WHERE funcion.idPelicula = pelicula.idPelicula AND pelicula.idClasificacion = clasificacion.idClasificacion AND funcion.idSede = sede.idSede";
+			$query = "SELECT idFuncion, fecha, pelicula.idPelicula as idPel,pelicula.nombre AS nombreP, segundoNombre, sinopsis, director, anio, actores, duracion, trailer, clasificacion.nombre AS nombreC, imagen, precio, disponibilidad, sede.nombre AS nombreS FROM funcion, pelicula, clasificacion, sede WHERE funcion.idPelicula = pelicula.idPelicula AND pelicula.idClasificacion = clasificacion.idClasificacion AND funcion.idSede = sede.idSede";
 			if(strcmp($whereQuery, "") != 0)
 				$query = $query." AND ".$whereQuery;
 			$link = conecta();
@@ -19,7 +19,8 @@
 			{
 				$lista[] = new Funcion( 
 					$row['idFuncion'], 
-					$row['fecha'], 					
+					$row['fecha'], 
+					$row['idPel'],					
 					$row['nombreP'], 
 					$row['segundoNombre'], 
 					$row['sinopsis'], 
@@ -39,6 +40,41 @@
 			return $lista;
 		}
 		
+		public function getFuncionesWhereDescOrder($whereQuery){
+			$lista = array();
+			$query = "SELECT idFuncion, fecha,pelicula.idPelicula as idPel , pelicula.nombre AS nombreP, segundoNombre, sinopsis, director, anio, actores, duracion, trailer, clasificacion.nombre AS nombreC, imagen, precio, disponibilidad, sede.nombre AS nombreS FROM funcion, pelicula, clasificacion, sede WHERE funcion.idPelicula = pelicula.idPelicula AND pelicula.idClasificacion = clasificacion.idClasificacion AND funcion.idSede = sede.idSede";
+			if(strcmp($whereQuery, "") != 0)
+				$query = $query." AND ".$whereQuery;
+			$query .= " ORDER BY fecha DESC ";
+			$link = conecta();
+                        mysqli_set_charset($link, "utf8");
+			if(!$result = mysqli_query($link,$query)){ 
+				die();
+			}
+			while($row = mysqli_fetch_array($result))
+			{
+				$lista[] = new Funcion( 
+					$row['idFuncion'], 
+					$row['fecha'],
+					$row['idPel'], 					
+					$row['nombreP'], 
+					$row['segundoNombre'], 
+					$row['sinopsis'], 
+					$row['director'], 
+					$row['anio'], 
+					$row['actores'], 
+					$row['duracion'], 
+					$row['trailer'], 
+					$row['nombreC'],
+					$row['imagen'],
+					$row['precio'],
+					$row['disponibilidad'],
+					$row['nombreS']
+				);
+			}		
+			desconecta($link);
+			return $lista;
+		}
 		
 		
 	}
