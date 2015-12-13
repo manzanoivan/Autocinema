@@ -15,12 +15,12 @@
 <?php
     echo getHeader(1);
 ?>
+
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Preloader -->
   <div id="preloader">
     <div id="load"></div>
   </div>
-  
 
     <?php
         echo setMenu( $usuario , 1, false);
@@ -35,7 +35,7 @@
                             <h4 class="title">Registrar Función</h4>
                         </div>
                         <div class="content">
-                            <form action="profile2.html">
+                            <form action="registrar.jsp">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -58,14 +58,14 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Fecha</label>
-                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  pattern="\d{1,2}/\d{1,2}/\d{4}"  id="fecha" required>
+                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha">
                                         </div>        
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tiempo</label>
-                                         <!--     <div class="input-group bootstrap-timepicker timepicker"> --> 
-                                                <input id="timepicker1" type="text" class="form-control " required>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="timepicker1" type="text" class="form-control">
                                             </div>
                                         </div>        
                                     </div>

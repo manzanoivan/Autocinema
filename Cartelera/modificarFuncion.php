@@ -12,31 +12,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Autocinema Coyote</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Fonts -->
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../css/animate.css" rel="stylesheet" />
-    <!-- Squad theme CSS -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../color/default.css" rel="stylesheet">
-    <!-- Backstretch CSS -->
-    <link href="../css/backstretch.css" rel="stylesheet">
-    <!-- info CSS -->
-    <link rel="../stylesheet" href="css/info.css" rel="stylesheet">
-     <!-- datepicker CSS -->
-    <link rel="../stylesheet" href="css/datepicker/datepicker.css">
-    <!-- datepicker CSS -->
-    <link rel="../stylesheet" href="css/timepicker/bootstrap-timepicker.css">
-
-</head>
+<?php
+    echo getHeader(1);
+?>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
   <!-- Preloader -->
@@ -44,39 +22,9 @@
     <div id="load"></div>
   </div>
 
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="index.html">
-                    <h1>AutoCinema</h1>
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html#intro">Home</a></li>
-        <li><a href="content-filter.html">Cartelera</a></li>
-		<li><a href="index.html#ubicacion">Ubicación</a></li>
-		<li><a href="index.html#contacto">Contacto</a></li>
-		<li><a href="product-comparison.html">Cafeteria</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="login.html">Iniciar Sesión</a></li>
-            <li><a href="signin.html">Registrarse</a></li>
-          </ul>
-		
-        </li>
-      </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    <?php
+        echo setMenu( $usuario , 1, false);
+    ?>
 
     <section id="edit" class="home-section">
         <div class="container-fluid bg-white">
@@ -84,10 +32,10 @@
                 <div class="col-md-12">
                     <div class="card mb">
                         <div class="header">
-                            <h4 class="title">Editar Función</h4>
+                            <h4 class="title">Modificar Función</h4>
                         </div>
                         <div class="content">
-                            <form action="profile2.html">
+                            <form action="registrar.jsp">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -110,20 +58,20 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Fecha</label>
-                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha" required>
+                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha">
                                         </div>        
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tiempo</label>
-                                         <!--     <div class="input-group bootstrap-timepicker timepicker"> --> 
-                                                <input id="timepicker1" type="text" class="form-control" required>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="timepicker1" type="text" class="form-control">
                                             </div>
                                         </div>        
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Actualizar</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right">Registrar</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -133,23 +81,9 @@
         </div>
     </section>
 
-    <!-- Core JavaScript Files -->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../js/custom.js"></script>
-    <script src="../js/backstretch/jquery.backstretch.js"></script>
-    <script>
-        $.backstretch([
-          "../img/intro/1.jpg",
-          "../img/intro/2.jpg",
-          "../img/intro/3.jpg"
-        ], {
-            fade: 750,
-            duration: 4000
-        });
-    </script>
+    <?php
+        echo getScripts(1);
+    ?>
 
     <!--datepicker-->
     <script src="../js/datepicker/bootstrap-datepicker.js"></script>

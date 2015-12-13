@@ -40,7 +40,7 @@
                 else{
             ?>
                 <br>
-                <h4><i class="fa fa-angle-right"></i>Películas</h4><h7><a href="agregarFuncion.php"><i class="fa fa-plus-square"></i> Agregar Película</h4></a><hr>
+                <h4><i class="fa fa-angle-right"></i>Películas</h4><h7><a href="registrarPelicula.php"><i class="fa fa-plus-square"></i> Agregar Película</h4></a><hr>
                 <table class="table table-striped table-advance table-hover">
                 <thead>
                   <tr>
@@ -50,23 +50,23 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><a href="revisarfuncion.php?id=1">Daredevil</a></td>
+                    <td><a href="revisarPelicula.php?id=1">Daredevil</a></td>
                     <td>
-                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                       <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                     </td>
                   </tr>
                   <tr>
-                    <td><a href="revisarfuncion.php?id=1">Divergente</a></td>
+                    <td><a href="revisarPelicula.php?id=1">Divergente</a></td>
                     <td>
-                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                       <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                     </td>
                   </tr>
                   <tr>
-                    <td><a href="revisarfuncion.php?id=1">Daredevil</a></td>
+                    <td><a href="revisarPelicula.php?id=1">Daredevil</a></td>
                     <td>
-                      <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                       <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                     </td>
                   </tr>           

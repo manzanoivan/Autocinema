@@ -30,7 +30,7 @@
       <div class="row mt bg-white">
         <div class="col-md-12">
           <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i>Funciones</h4><h7><a href="agregar.jsp"><i class="fa fa-plus-square"></i> Agregar Función</h4></a><hr>
+            <br><h4><i class="fa fa-angle-right"></i>Funciones</h4><h7><a href="registrarfuncion.php"><i class="fa fa-plus-square"></i> Agregar Función</h4></a><hr>
             <table class="table table-striped table-advance table-hover">
             <thead>
               <tr>
@@ -44,7 +44,7 @@
                 <td><a href="verproducto.jsp">00/00/00 00:00:00</a></td>
                 <td><a href="verproducto.jsp">Daredevil</a></td>
                 <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                   <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                 </td>
               </tr>
@@ -52,7 +52,7 @@
                 <td><a href="verproducto.jsp">00/00/00 00:00:00</a></td>
                 <td><a href="verproducto.jsp">Divergente</a></td>
                 <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                   <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                 </td>
               </tr>
@@ -60,7 +60,7 @@
                 <td><a href="verproducto.jsp">00/00/00 00:00:00</a></td>
                 <td><a href="verproducto.jsp">Daredevil</a></td>
                 <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                   <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                 </td>
               </tr>
@@ -68,7 +68,7 @@
                 <td><a href="verproducto.jsp">00/00/00 00:00:00</a></td>
                 <td><a href="verproducto.jsp">Divergente</a></td>
                 <td>
-                  <a href="modificar.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                   <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                 </td>
               </tr> 
