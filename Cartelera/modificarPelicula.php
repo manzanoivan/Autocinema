@@ -3,6 +3,7 @@
     require_once ("../menu.php");
     require_once '../Header.php';
     require_once '../connect_db.php';
+	require_once 'ListaDePeliculas.php';
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -33,18 +34,26 @@
                             <h4 class="title">Editar Película</h4>
                         </div>
                         <div class="content">
-                            <form action="verpeliculas.html">
+						
+						<?php
+							$id = $_GET['id'];
+							$listaDePeliculas = new ListaDePeliculas();
+							$peliculas = $listaDePeliculas->getPeliculasWhere("idPelicula = ".$id);
+							if($peliculas != null){
+						?>
+						
+                            <form action="editarPelicula.php">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nombre Original</label>
-                                            <input type="text" class="form-control" placeholder="Nombre Película" required>
+                                            <input type="text" class="form-control" placeholder="Nombre Película" required value = "<?php echo $peliculas[0]->getNombre() ?>" name = "nombre" id = "nombre">
                                         </div>        
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nombre en Español</label>
-                                            <input type="text" class="form-control" placeholder="Nombre Película" required>
+                                            <input type="text" class="form-control" placeholder="Nombre Película" required value = "<?php echo $peliculas[0]->getSegundoNombre() ?>" name = "segundoNombre" id = "segundoNombre">
                                         </div>        
                                     </div>
                                 </div>
@@ -53,23 +62,39 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Clasificación</label>
-                                            <select class="form-control">
-                                              <option>AA</option>
-                                              <option>A</option>
-                                              <option>B15</option>
+                                            <select class="form-control" name = "clasificacion" id = "clasificacion">
+                                              <?php
+													$link = conecta();
+													mysqli_set_charset($link, "utf8");
+													if(!$result = mysqli_query($link,"SELECT idClasificacion, nombre FROM clasificacion")){ 
+														die();
+													}
+													while($row = mysqli_fetch_array($result))
+													{
+														$selected = "";	
+														if($row['nombre'] == $peliculas[0]->getClasificacion()){															
+															$selected = "selected";
+														}
+												?>
+														<option value = "<?php echo $row['idClasificacion'];?>" <?php echo $selected; ?>><?php echo $row['nombre'];?></option>
+												<?php
+													}		
+													desconecta($link);
+												?>
                                             </select>
                                         </div>        
                                     </div>
-                                    <div class="col-md-4">
+                                    
+									<div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Fecha</label>
-                                            <input  type="text" class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}"  placeholder="dd/mm/yyyy"  id="fecha" required>
+                                            <label>Año</label>
+                                            <input  type="text" class="form-control"  placeholder="Año"   required name = "anio" id = "anio" value = "<?php echo $peliculas[0]->getAnio(); ?>">
                                         </div>        
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Duración(Minutos)</label>
-                                           <input type="number" class="form-control" min="1" value="1" required>
+                                           <input type="number" class="form-control" min="1"  required name = "duracion" id = "duracio" value = <?php echo $peliculas[0]->getDuracion(); ?>>
                                         </div>        
                                     </div>
                                 </div>
@@ -78,7 +103,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Video(URL)</label>
-                                             <input type="url" class="form-control"  required>
+                                             <input type="url" class="form-control"  required name = "trailer" id = "trailer" value = "<?php echo $peliculas[0]->getTrailer(); ?>">
                                         </div>        
                                     </div>
                                 </div>
@@ -87,7 +112,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Director</label>
-                                            <input type="text" class="form-control" placeholder="Director" required>
+                                            <input type="text" class="form-control" placeholder="Director" required name = "director" id = "director" value = "<?php echo $peliculas[0]->getDirector(); ?>">
                                         </div>        
                                     </div>
                                 </div>
@@ -96,7 +121,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Imagen</label>
-                                            <input type="file" required>
+											<br>
+											<?php
+												$imagen64 = base64_encode($peliculas[0]->getDirector());
+											?>
+											<img src="data:image/png;base64,<?php echo $imagen64; ?>"/>
+                                            <input type="file" name="image">
                                         </div>        
                                     </div>
                                 </div>
@@ -105,7 +135,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Actores</label>
-                                            <input type="text" class="form-control" placeholder="Actores" required>
+                                            <input type="text" class="form-control" placeholder="Actores" required name = "actores" id = "actores" value = "<?php echo $peliculas[0]->getActores() ?>">
                                         </div>        
                                     </div>
                                 </div>
@@ -114,14 +144,23 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Sinopsis</label>
-                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required></textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required name = "sinopsis" id = "sinopsis" value = "<?php echo $peliculas[0]->getSinopsis() ?>"></textarea>
                                         </div>        
                                     </div>
                                 </div>
 
+
                                 <button type="submit" class="btn btn-info btn-fill pull-right">Guardar</button>
                                 <div class="clearfix"></div>
                             </form>
+							
+						<?php
+							}
+							else{
+								//AQUÍ SE REDIRECCIONA AL ERROR	
+							}
+						?>
+							
                         </div>
                     </div>
                 </div>

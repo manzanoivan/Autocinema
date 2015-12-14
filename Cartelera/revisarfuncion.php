@@ -101,9 +101,7 @@
                                      <div class="col-sm-4">
                                         <div class="form-group">
                                             <label><?php echo $funciones[0]->getSede() ?></label>
-											
-											<!--CAMBIAR LA REFERENCI APOR LA PÁGINA DE COMPRA -->
-                                            <a href=""><p><?php echo $funciones[0]->getFecha() ?>, $<?php echo $funciones[0]->getPrecio() ?>, <?php echo $funciones[0]->getDisponibilidad() ?> disponibles</p></a>
+                                            <a href="compraBoleto.php?id=<?php echo $funciones[0]->getId() ?>"><p><?php echo $funciones[0]->getFecha() ?>, $<?php echo $funciones[0]->getPrecio() ?></p></a>
                                         </div>        
                                     </div>                            
                                 </div>  
