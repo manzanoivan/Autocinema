@@ -125,7 +125,7 @@
                 <div class="col-md-4">
                     <div class="card card-user mb">
                         <div class="image resimg">
-                            <img src="<?php echo $funciones[0]->getImagen() ?>" alt="QR"/>   
+                            <img src="data:image/png;base64,<?php echo base64_encode( $funciones[0]->getImagen() );  ?>" alt="QR"/>   
                         </div>
                         <hr>
                         <div class="text-center">

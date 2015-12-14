@@ -5,7 +5,7 @@
     session_start();
     
     if(is_null($_POST["usuario"]) ){
-        header("Location: ");
+        header("Location: signup.php");
     }
     
     $username = htmlspecialchars($_POST["usuario"] , ENT_QUOTES);
@@ -28,7 +28,6 @@
     else{
         $link = conecta();
         $sql1 = "INSERT INTO usuario ( nombre, apellidos, email, password, username, tipo, idSexo ) VALUES ('".$nombre."','".$apellidos."','".$email."','".$password."','".$username."',2,".$sexo.")";
-        echo $sql1;
         $insertar = insert($sql1, $link);
         desconecta($link);
         if( $insertar ){

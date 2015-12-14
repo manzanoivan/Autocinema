@@ -10,6 +10,7 @@
 			$query = "SELECT idFuncion, fecha, pelicula.idPelicula as idPel,pelicula.nombre AS nombreP, segundoNombre, sinopsis, director, anio, actores, duracion, trailer, clasificacion.nombre AS nombreC, imagen, precio, disponibilidad, sede.nombre AS nombreS FROM funcion, pelicula, clasificacion, sede WHERE funcion.idPelicula = pelicula.idPelicula AND pelicula.idClasificacion = clasificacion.idClasificacion AND funcion.idSede = sede.idSede";
 			if(strcmp($whereQuery, "") != 0)
 				$query = $query." AND ".$whereQuery;
+			//echo $query;
 			$link = conecta();
                         mysqli_set_charset($link, "utf8");
 			if(!$result = mysqli_query($link,$query)){ 

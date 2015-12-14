@@ -3,6 +3,7 @@
     require_once ("../menu.php");
     require_once '../Header.php';
     require_once '../connect_db.php';
+	require_once 'ListaDePeliculas.php';
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -49,27 +50,25 @@
                   </tr>
                 </thead>
                 <tbody>
+                  
+				  <?php
+					$listaDePeliculas = new ListaDePeliculas();
+					$peliculas = $listaDePeliculas->getPeliculasWhere("");
+					foreach ($peliculas as $pelicula) {
+					?>
+				
                   <tr>
-                    <td><a href="revisarPelicula.php?id=1">Daredevil</a></td>
+                    <td><a href="revisarPelicula.php?id=<?php echo $pelicula->getId() ?>"><?php echo $pelicula->getNombre() ?></a></td>
                     <td>
-                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                      <a href="modificarPelicula.php?id=<?php echo $pelicula->getId() ?>"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                      <a href="eliminarPelicula.php?id=<?php echo $pelicula->getId() ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                     </td>
-                  </tr>
-                  <tr>
-                    <td><a href="revisarPelicula.php?id=1">Divergente</a></td>
-                    <td>
-                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="revisarPelicula.php?id=1">Daredevil</a></td>
-                    <td>
-                      <a href="modificarPelicula.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                    </td>
-                  </tr>           
+                  </tr> 
+				  
+				  <?php 
+					} 				
+					?>	
+				  
                 </tbody>
               </table>
           <?php

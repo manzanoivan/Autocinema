@@ -38,7 +38,7 @@
 									<h5><?php echo $funcion->getSede(); ?></h5>
 									<p class="subtitle"><?php echo $funcion->getFecha(); ?></p>
 									<!-- CAMBIAR POR getImagen -->
-									<div class="avatar"><img src="../img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
+									<div class="avatar"><img src="data:image/png;base64,<?php echo base64_encode( $funcion->getImagen() );  ?>" alt="" class="img-responsive img-circle img-center" /></div>
 									<p class="subtitle"><?php echo $funcion->getNombrePelicula(); ?></p>
 								</div>
 							</div>

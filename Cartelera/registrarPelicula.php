@@ -35,18 +35,18 @@
                             <h4 class="title">Registrar Película</h4>
                         </div>
                         <div class="content">
-                            <form action="verpeliculas.html">
+                            <form action="submitPelicula.php" method = "POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nombre Original</label>
-                                            <input type="text" class="form-control" placeholder="Nombre Película" required>
+                                            <input type="text" class="form-control" placeholder="Nombre Película" required name = "nombre" id = "nombre">
                                         </div>        
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nombre en Español</label>
-                                            <input type="text" class="form-control" placeholder="Nombre Película" required>
+                                            <input type="text" class="form-control" placeholder="Nombre Película" required name = "segundoNombre" id = "segundoNombre">
                                         </div>        
                                     </div>
                                 </div>
@@ -55,23 +55,36 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Clasificación</label>
-                                            <select class="form-control">
-                                              <option>AA</option>
-                                              <option>A</option>
-                                              <option>B15</option>
+                                            <select class="form-control" name = "clasificacion" id = "clasificacion">
+												<?php
+													$link = conecta();
+													mysqli_set_charset($link, "utf8");
+													if(!$result = mysqli_query($link,"SELECT idClasificacion, nombre FROM clasificacion")){ 
+														die();
+													}
+													while($row = mysqli_fetch_array($result))
+													{
+												?>
+														<option value = "<?php echo $row['idClasificacion']; ?>"><?php echo $row['nombre']; ?></option>
+												<?php
+													}		
+													desconecta($link);
+												?>
+
+									  
                                             </select>
                                         </div>        
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Fecha</label>
-                                            <input  type="text" class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}"  placeholder="dd/mm/yyyy"  id="fecha" required>
+                                            <label>Año</label>
+                                            <input  type="text" class="form-control"  placeholder="Año"   required name = "anio" id = "anio">
                                         </div>        
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Duración(Minutos)</label>
-                                           <input type="number" class="form-control" min="1" value="1" required>
+                                           <input type="number" class="form-control" min="1" value="1" required name = "duracion" id = "duracio">
                                         </div>        
                                     </div>
                                 </div>
@@ -80,7 +93,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Video(URL)</label>
-                                             <input type="url" class="form-control"  required>
+                                             <input type="url" class="form-control"  required name = "trailer" id = "trailer">
                                         </div>        
                                     </div>
                                 </div>
@@ -89,7 +102,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Director</label>
-                                            <input type="text" class="form-control" placeholder="Director" required>
+                                            <input type="text" class="form-control" placeholder="Director" required name = "director" id = "director">
                                         </div>        
                                     </div>
                                 </div>
@@ -98,7 +111,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Imagen</label>
-                                            <input type="file" required>
+                                            <input type="file" name="image"  required >
                                         </div>        
                                     </div>
                                 </div>
@@ -107,7 +120,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Actores</label>
-                                            <input type="text" class="form-control" placeholder="Actores" required>
+                                            <input type="text" class="form-control" placeholder="Actores" required name = "actores" id = "actores">
                                         </div>        
                                     </div>
                                 </div>
@@ -116,7 +129,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Sinopsis</label>
-                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required></textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required name = "sinopsis" id = "sinopsis"></textarea>
                                         </div>        
                                     </div>
                                 </div>

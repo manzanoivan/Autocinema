@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`usuario` (
   CONSTRAINT `fk_usuario_tipoUsuario1`
     FOREIGN KEY (`tipo`)
     REFERENCES `autocinema`.`tipoUsuario` (`idTipo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -120,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`pelicula` (
   CONSTRAINT `fk_pelicula_clasificacion1`
     FOREIGN KEY (`idClasificacion`)
     REFERENCES `autocinema`.`clasificacion` (`idClasificacion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -156,13 +156,13 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`funcion` (
   CONSTRAINT `fk_funcion_pelicula1`
     FOREIGN KEY (`idPelicula`)
     REFERENCES `autocinema`.`pelicula` (`idPelicula`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_funcion_sede1`
     FOREIGN KEY (`idSede`)
     REFERENCES `autocinema`.`sede` (`idSede`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -197,13 +197,13 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`pagoBoleto` (
   CONSTRAINT `fk_pago_usuario1`
     FOREIGN KEY (`idUsuario`)
     REFERENCES `autocinema`.`usuario` (`idUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_pagoBoleto_tipoPago1`
     FOREIGN KEY (`idTipoPago`)
     REFERENCES `autocinema`.`tipoPago` (`idTipoPago`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -226,13 +226,13 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`boleto` (
   CONSTRAINT `fk_usuario_has_funcion_funcion1`
     FOREIGN KEY (`idFuncion`)
     REFERENCES `autocinema`.`funcion` (`idFuncion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_boleto_pagoBoleto1`
     FOREIGN KEY (`idPagoBoleto`)
     REFERENCES `autocinema`.`pagoBoleto` (`idPago`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -253,8 +253,8 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`compraCafeteria` (
   CONSTRAINT `fk_compraCafeteria_usuario1`
     FOREIGN KEY (`idUsuario`)
     REFERENCES `autocinema`.`usuario` (`idUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -274,13 +274,13 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`detalleCompra` (
   CONSTRAINT `fk_compraCafeteria_has_productosCafeteria_compraCafeteria1`
     FOREIGN KEY (`idCompra`)
     REFERENCES `autocinema`.`compraCafeteria` (`idCompra`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_compraCafeteria_has_productosCafeteria_productosCafeteria1`
     FOREIGN KEY (`idProducto`)
     REFERENCES `autocinema`.`productoCafeteria` (`idProducto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -371,13 +371,13 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`disponibilidadProducto` (
   CONSTRAINT `fk_productosCafeteria_has_sede_productosCafeteria1`
     FOREIGN KEY (`idProducto`)
     REFERENCES `autocinema`.`productoCafeteria` (`idProducto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_productosCafeteria_has_sede_sede1`
     FOREIGN KEY (`idSede`)
     REFERENCES `autocinema`.`sede` (`idSede`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -496,6 +496,7 @@ INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`
 INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (2, '2016-1-2 20:00:00', 2, 250, 50, 2);
 INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (3, '2016-1-3 20:00:00', 3, 250, 50, 1);
 INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (4, '2016-1-4 18:00:00', 4, 400, 50, 2);
+INSERT INTO `autocinema`.`funcion` (`idFuncion`, `fecha`, `idPelicula`, `precio`, `disponibilidad`, `idSede`) VALUES (5, '2015-1-1 19:00:00', 1, 300, 0, 1);
 
 COMMIT;
 

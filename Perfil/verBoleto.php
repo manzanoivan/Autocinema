@@ -150,7 +150,7 @@
                             <div class="col-md-4">
                                 <div class="card card-user mb">
                                     <div class="image resimg">
-                                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="QR"/>   
+                                        <img src="data:image/png;base64,<?php echo base64_encode( $ticket->getFuncion()->getImagen() );  ?>" alt="QR"/>   
                                     </div>
                                     <div class="content">
                                         <p class="description text-center">Codigo QR

@@ -68,12 +68,28 @@
                             $time = $time->format('j/n/Y H:i');
                         ?>
                           <tr>
-                            <td><a href="revisarfuncion.php?id=1"><?php echo $time ?></a></td>
-                            <td><a href="verproducto.jsp<?php echo $funcion->getIdPelicula(); ?>"><?php echo $funcion->getNombrePelicula() ?></a></td>
-                            <td></td>
+                            <td><a href="revisarfuncion.php?id=<?php echo $funcion->getId(); ?>"><?php echo $time ?></a></td>
+                            <td><a href="revisarPelicula.php?id=<?php echo $funcion->getIdPelicula(); ?>"><?php echo $funcion->getNombrePelicula() ?></a></td>
                             <td>
-                              <a href="modificarFuncion.php"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                              <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                              <?php
+                                date_default_timezone_set('America/Mexico_City');
+                                $info = new DateTime("now");
+                                $time = new DateTime($funcion->getFecha());
+                                if( $time < $info ){
+                              ?>
+                                  <span class="label label-warning label-mini">Proyectada</span>
+                              <?php  
+                                }          
+                                else{
+                              ?>
+                                  <span class="label label-success label-mini">Por proyectar</span>
+                              <?php  
+                                }
+                              ?>
+                            </td>
+                            <td>
+                              <a href="modificarFuncion.php?id=<?php echo $funcion->getId(); ?>"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                              <a href="eliminarFuncion.php?id=<?php echo $funcion->getId(); ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                             </td>
                           </tr>
                         <?php
