@@ -2,7 +2,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
-    require_once("ListaDeFunciones.php");
+    require_once("ListaDePeliculas.php");
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -31,22 +31,18 @@
 
     <section id="edit" class="home-section">
         <div class="container-fluid bg-white">
+			<?php
+				$id = $_GET['id'];
+				$listaDeFunciones = new ListaDePeliculas();
+				$funciones = $listaDeFunciones->getPeliculasWhere("idPelicula = ".$id);
+				if($funciones != null){
+			?>
             <div class="row">
                 <div class="col-md-8">
-				
-					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-					
-					<?php
-						$id = $_GET['id'];
-						$listaDeFunciones = new ListaDeFunciones();
-						$funciones = $listaDeFunciones->getFuncionesWhere("idFuncion = ".$id);
-						if($funciones != null){
-					?>
-					
                     <div class="card mb">
                         <div class="header">
-                            <h4 class="title nomg"><?php echo $funciones[0]->getNombrePelicula() ?></h4>
-                            <h6>(<?php echo $funciones[0]->getSegundoNombrePelicula() ?>)</h6>
+                            <h4 class="title nomg"><?php echo $funciones[0]->getNombre() ?></h4>
+                            <h6>(<?php echo $funciones[0]->getSegundoNombre() ?>)</h6>
                         </div>
                         <div class="content">
                             <form>                                
@@ -96,25 +92,17 @@
                                         </div>        
                                     </div>
                                 </div>
+    
+               
                                 <div class="clearfix"></div>
                             </form>
                         </div>
                     </div>
-					
-					<?php
-						}
-						else{
-							//AQUÍ SE REDIRECCIONA AL ERROR	
-						}
-					?>
-					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-                </div>
-				
-				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->	
+                </div>				
                 <div class="col-md-4">
                     <div class="card card-user mb">
                         <div class="image resimg">
-                            <img src="<?php echo $funciones[0]->getImagen() ?>" alt="QR"/>   
+                            <img src="data:image/png;base64,<?php echo base64_encode( $funciones[0]->getImagen() );  ?>" alt="QR"/>   
                         </div>
                         <hr>
                         <div class="text-center">
@@ -122,8 +110,17 @@
                         </div>
                     </div>
                 </div>
-				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-            </div>                    
+            </div>    
+			<?php
+				}
+				else{
+			?>
+					<div class="row">
+						Esta película no existe	
+					</div>
+			<?php
+				}
+			?>			
         </div> 
     </section>
 

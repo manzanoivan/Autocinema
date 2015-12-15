@@ -42,7 +42,7 @@
 							if($peliculas != null){
 						?>
 						
-                            <form action="editarPelicula.php">
+                            <form action="editarPelicula.php?id=<?php echo $peliculas[0]->getId() ?>" method = "POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -122,10 +122,7 @@
                                         <div class="form-group">
                                             <label>Imagen</label>
 											<br>
-											<?php
-												$imagen64 = base64_encode($peliculas[0]->getDirector());
-											?>
-											<img src="data:image/png;base64,<?php echo $imagen64; ?>"/>
+											<img src="data:image/png;base64,<?php echo base64_encode( $peliculas[0]->getImagen() );  ?>" alt="QR"/>
                                             <input type="file" name="image">
                                         </div>        
                                     </div>
@@ -144,7 +141,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Sinopsis</label>
-                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required name = "sinopsis" id = "sinopsis" value = "<?php echo $peliculas[0]->getSinopsis() ?>"></textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Sinopsis" required name = "sinopsis" id = "sinopsis" ><?php echo $peliculas[0]->getSinopsis() ?></textarea>
                                         </div>        
                                     </div>
                                 </div>
@@ -157,7 +154,7 @@
 						<?php
 							}
 							else{
-								//AQUÍ SE REDIRECCIONA AL ERROR	
+								echo "Esta película no existe";
 							}
 						?>
 							

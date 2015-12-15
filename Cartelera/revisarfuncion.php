@@ -31,18 +31,14 @@
 
     <section id="edit" class="home-section">
         <div class="container-fluid bg-white">
+			<?php
+				$id = $_GET['id'];
+				$listaDeFunciones = new ListaDeFunciones();
+				$funciones = $listaDeFunciones->getFuncionesWhere("idFuncion = ".$id);
+				if($funciones != null){
+			?>
             <div class="row">
                 <div class="col-md-8">
-				
-					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-					
-					<?php
-						$id = $_GET['id'];
-						$listaDeFunciones = new ListaDeFunciones();
-						$funciones = $listaDeFunciones->getFuncionesWhere("idFuncion = ".$id);
-						if($funciones != null){
-					?>
-					
                     <div class="card mb">
                         <div class="header">
                             <h4 class="title nomg"><?php echo $funciones[0]->getNombrePelicula() ?></h4>
@@ -109,17 +105,7 @@
                             </form>
                         </div>
                     </div>
-					
-					<?php
-						}
-						else{
-							//AQUÍ SE REDIRECCIONA AL ERROR	
-						}
-					?>
-					<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-                </div>
-				
-				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->	
+                </div>				
                 <div class="col-md-4">
                     <div class="card card-user mb">
                         <div class="image resimg">
@@ -131,8 +117,17 @@
                         </div>
                     </div>
                 </div>
-				<!-- EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO EDITADO -->
-            </div>                    
+            </div>    
+			<?php
+				}
+				else{
+			?>
+					<div class="row">
+						Esta función no existe	
+					</div>
+			<?php
+				}
+			?>			
         </div> 
     </section>
 
