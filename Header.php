@@ -26,7 +26,7 @@
         $header .="<link rel='stylesheet' href='".$carpeta."css/login.css' rel='stylesheet'>";
         $header .="<link href='".$carpeta."css/ct/nav-tabs.css' rel='stylesheet'/>";
         $header .="<link rel='stylesheet' href='".$carpeta."css/info.css' rel='stylesheet'>";
-        $header .="<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>";
+        //$header .="<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>";
         $header .= "<link rel='stylesheet' href='".$carpeta."css/filter-style.css'> <!-- Resource style -->";
         $header .= "<link rel='stylesheet' href='".$carpeta."css/table.css' rel='stylesheet'>";
         $header .= "<link rel='stylesheet' href='".$carpeta."css/datepicker/datepicker.css'>";

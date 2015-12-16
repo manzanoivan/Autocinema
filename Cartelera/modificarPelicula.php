@@ -122,7 +122,9 @@
                                         <div class="form-group">
                                             <label>Imagen</label>
 											<br>
-											<img src="data:image/png;base64,<?php echo base64_encode( $peliculas[0]->getImagen() );  ?>" alt="QR"/>
+                                            <div class="image resimg">
+								                <img src="data:image/png;base64,<?php echo base64_encode( $peliculas[0]->getImagen() );  ?>" alt="QR"/>
+                                            </div>
                                             <input type="file" name="image">
                                         </div>        
                                     </div>

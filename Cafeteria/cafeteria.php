@@ -31,7 +31,7 @@
 	          	<div class="content-panel grid">					
 					<?php
 						$listaDeProductos = new ListaDeProductos();
-						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 1");
+						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 1 AND existencia > 0");
 						foreach ($productos as $producto) {
 					?>					
 					<div class="product">
