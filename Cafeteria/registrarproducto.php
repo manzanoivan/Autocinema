@@ -35,24 +35,18 @@
                             <h4 class="title">Registrar Producto</h4>
                         </div>
                         <div class="content">
-                            <form action="verinventario.html">
+                            <form action="registroDeProducto.php" method = "POST" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label>Nombre</label>
-                                            <input type="text" class="form-control" placeholder="Nombre Producto" required>
-                                        </div>        
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Precio</label>
-                                            <input type="text" class="form-control" placeholder="22.50" required>
+                                            <input type="text" class="form-control" placeholder="Nombre Producto" required name = "nombre" id = "nombre">
                                         </div>        
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Existencias</label>
-                                            <input type="number" class="form-control" min="1" value="1" required>
+                                            <label>Precio</label>
+                                            <input type="number" class="form-control" min="0" required name = "precio" id = "precio">
                                         </div>        
                                     </div>
                                 </div>
@@ -60,26 +54,33 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Sede</label>
-                                            <select class="form-control">
-                                              <option>Insurgentes</option>
-                                              <option>Polanco</option>
-                                            </select>
+                                            <label>Existencias Polanco</label>
+                                            <input type="number" class="form-control" min="0" value="0" required name = "existencias1" id = "existencias1">
                                         </div>        
                                     </div>
+									<div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Existencias Insurgentes</label>
+                                            <input type="number" class="form-control" min="0" value="0" required name = "existencias2" id = "existencias2">
+                                        </div>        
+                                    </div>
+                                    
+                                </div>
+
+								<div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Imagen</label>
-                                            <input type="file" name="pic" accept="image/*" required>
+                                            <input type="file"  accept="image/*" required name = "image" id = "image">
                                         </div>        
                                     </div>
-                                </div>
-
+                                </div>								
+								
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Descripción Producto</label>
-                                            <textarea rows="5" class="form-control" placeholder="Descripción" required></textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Descripción" required name = "descripcion" id = "descripcion"></textarea>
                                         </div>        
                                     </div>
                                 </div>

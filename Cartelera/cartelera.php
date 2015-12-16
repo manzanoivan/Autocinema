@@ -4,6 +4,7 @@
     require_once ("../menu.php");
     require_once '../Header.php';
 	require_once("ListaDeFunciones.php");
+	
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -30,9 +31,56 @@
 				<?php
 					$listaDeFunciones = new ListaDeFunciones();
 					$funciones = $listaDeFunciones->getFuncionesWhere("");
-					foreach ($funciones as $funcion) {
+					foreach ($funciones as $funcion)
+				
+					{
+
+				 
+					
+					
 				?>
-						<li class="mix color-1 check1 radio2 option3"><a href="revisarfuncion.php?id=<?php echo $funcion->getId(); ?>">
+						
+						<li class="mix color-1 <?php 
+				    $funcion->getSede();
+					$cadena1='Insurgentes Sur';
+					$cadena2='Polanco';
+					$opc='';
+				
+					$checks='';
+					
+					if (strcmp ($funcion->getSede() , $cadena1) == 0) {
+						$checks='check1';
+						}
+					else 
+						{
+							$checks='check2';
+						}
+					
+						$id=$funcion->getId(); 
+						$clasi= $funcion->getClasificacion();
+						switch($clasi)
+						{
+							case 'AA':
+								$opc='option0';
+								break;
+							case 'A':
+								$opc='option1';
+								break;
+							case 'B':
+								$opc='option2';
+								break;
+							case 'B-15':
+								$opc='option3';
+								break;
+							case 'C':
+								$opc='option4';
+								break;
+							
+						
+						}
+		
+						
+						echo $checks; echo ' '; echo $opc; ?>   "><a href="revisarfuncion.php?id=<?php echo $id ;?>">
 							<div class="team boxed-grey">
 								<div class="inner">
 									<h5><?php echo $funcion->getSede(); ?></h5>
@@ -40,6 +88,7 @@
 									<!-- CAMBIAR POR getImagen -->
 									<div class="avatar"><img src="data:image/png;base64,<?php echo base64_encode( $funcion->getImagen() );  ?>" alt="" class="img-responsive img-center" /></div>
 									<p class="subtitle"><?php echo $funcion->getNombrePelicula(); ?></p>
+									<p> Clasificación <?php echo $clasi?> </p>
 								</div>
 							</div>
 						</a></li>
@@ -49,59 +98,51 @@
                             <li class="gap"></li>
                             <li class="gap"></li>
                             <li class="gap"></li>
+                            <div class="cd-fail-message">No se encontraron resultados</div>
                     </ul>
-                    <div class="cd-fail-message">No results found</div>
             </section> <!-- cd-gallery -->
 
             <div class="cd-filter">
                     <form>
-                            <div class="cd-filter-block">
-                                    <h4>Search</h4>
-
-                                    <div class="cd-filter-content">
-                                            <input type="search" placeholder="Try color-1...">
-                                    </div> <!-- cd-filter-content -->
-                            </div> <!-- cd-filter-block -->
+                          
 
                             <div class="cd-filter-block">
-                                    <h4>Check boxes</h4>
+                                    <h4>Localización</h4>
 
                                     <ul class="cd-filter-content cd-filters list">
                                             <li>
                                                     <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-                                            <label class="checkbox-label" for="checkbox1">Option 1</label>
+                                            <label class="checkbox-label" for="checkbox1">Insurgentes Sur</label>
                                             </li>
 
                                             <li>
                                                     <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-                                                    <label class="checkbox-label" for="checkbox2">Option 2</label>
+                                                    <label class="checkbox-label" for="checkbox2"> Polanco</label>
                                             </li>
 
-                                            <li>
-                                                    <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-                                                    <label class="checkbox-label" for="checkbox3">Option 3</label>
-                                            </li>
+                                            
                                     </ul> <!-- cd-filter-content -->
                             </div> <!-- cd-filter-block -->
 
                             <div class="cd-filter-block">
-                                    <h4>Select</h4>
+                                    <h4>Clasificación</h4>
 
                                     <div class="cd-filter-content">
                                             <div class="cd-select cd-filters">
                                                     <select class="filter" name="selectThis" id="selectThis">
-                                                            <option value="">Choose an option</option>
-                                                            <option value=".option1">Option 1</option>
-                                                            <option value=".option2">Option 2</option>
-                                                            <option value=".option3">Option 3</option>
-                                                            <option value=".option4">Option 4</option>
-                                                            <option value=".option5">Option 5</option>
+                                                            <option value="">Escoge una Opción </option>
+                                                            <option value=".option0">Clasificación AA</option>
+                                                            <option value=".option1">Clasificación A</option>
+                                                            <option value=".option2">Clasificación B</option>
+                                                            <option value=".option3">Clasificación B-15</option>
+															<option value=".option4">Clasificación C</option>
+                                                           
                                                     </select>
                                             </div> <!-- cd-select -->
                                     </div> <!-- cd-filter-content -->
                             </div> <!-- cd-filter-block -->
 
-                            <div class="cd-filter-block">
+                        <!--    <div class="cd-filter-block">
                                     <h4>Radio buttons</h4>
 
                                     <ul class="cd-filter-content cd-filters list">
@@ -120,7 +161,7 @@
                                                     <label class="radio-label" for="radio3">Choice 3</label>
                                             </li>
                                     </ul> <!-- cd-filter-content -->
-                            </div> <!-- cd-filter-block -->
+                            </div> --> <!-- cd-filter-block -->
                     </form>
             </div> <!-- cd-filter -->
 

@@ -2,6 +2,9 @@
     require_once("Usuario.php");
     require_once ("menu.php");
     require_once 'Header.php';
+	require_once("Cartelera/ListaDeFunciones.php");
+	
+	
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -18,6 +21,7 @@
 ?>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	 <link href='css/center-bootstrap.css' rel='stylesheet'>
 	<!-- Preloader -->
 	<div id="preloader">
 	  <div id="load"></div>
@@ -50,7 +54,7 @@
 				<div class="col-lg-8 col-lg-offset-2">
 					<div class="wow bounceInDown" data-wow-delay="0.4s">
 					<div class="section-heading">
-					<h2>Hoy en Cartelera</h2>
+					<h2>Esta semana en  Cartelera</h2>
 					<i class="fa fa-2x fa-angle-down"></i>
 
 					</div>
@@ -66,37 +70,43 @@
 				<hr class="marginbot-50">
 			</div>
 		</div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3 col-md-offset-3">
+       
+           
+	     <div class="row">      
+					
+               <?php
+				   	date_default_timezone_set('America/Mexico_City');
+                    $info = new DateTime("now");
+                    $var = $info->format("Y-n-j H:i:s");
+
+					$listaDeFunciones = new ListaDeFunciones();
+					$funciones = $listaDeFunciones->getFuncionesWhere( " fecha > '".$var."' LIMIT 2" );
+					foreach ($funciones as $funcion)
+					{
+						$id=$funcion->getId(); 
+				
+				?>  
+	
+            <div class="col-xs-12 col-sm-6 col-md-3 col-centered-sm ">
 				<div class="wow bounceInUp" data-wow-delay="0.2s">
-	            <a href="peli1">
-	                <div class="team boxed-grey">
-	                    <div class="inner">
-							<h5>Insurgentes</h5>
-	                        <p class="subtitle">20:30 horas</p>
-	                        <div class="avatar"><img src="img/team/1.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-	                        <p class="subtitle">COMPRAR</p>
+					<a href="Cartelera/revisarfuncion.php?id=<?php echo $id ;?>">
+	                <div class="team boxed-grey" >
+					  <div class="inner">
+							<h5> <?php echo $funcion->getSede(); ?> </h5>
+	                        <p class="subtitle"> <?php echo $funcion->getFecha();  ?></p>
+	                        <div class="avatar"><img src="data:image/png;base64,<?php echo base64_encode( $funcion->getImagen() );  ?>" alt="" class="img-responsive img-center" /></div>
+	                        <p class="subtitle"><?php echo $funcion->getNombrePelicula();  ?></p>
 	                    </div>
 	                </div>
 	            </a>
 				</div>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="wow bounceInUp" data-wow-delay="0.5s">
-	            <a href="peli2">    
-	                <div class="team boxed-grey">
-	                    <div class="inner">
-							<h5>Polanco</h5>
-	                        <p class="subtitle">13:30 horas</p>
-	                        <div class="avatar"><img src="img/team/2.jpg" alt="" class="img-responsive img-circle img-center" /></div>
-							<p class="subtitle">COMPRAR</p>
-	                    </div>
-	                </div>
-	            </a>
-				</div>
-            </div>
-        </div>		
-		</div>
+			
+		<?php 
+	}
+		?>
+		</div>		
+	</div>
 	</section>
 	<!-- /Section: about -->
 	
@@ -247,13 +257,13 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="boxed-grey">
-                <form id="contact-form" action="hola.php">
+                <form id="contact-form" action="Comentario.php"  method="post" >
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">
                                 Nombre</label>
-                            <input type="text" class="form-control" id="name" placeholder="Ingresa nombre" required="required" />
+                            <input  name="name" type="text" class="form-control" id="name" placeholder="Ingresa nombre" required="required" />
                         </div>
                         <div class="form-group">
                             <label for="email">
@@ -261,7 +271,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" class="form-control" id="email" placeholder="Ingresa email" required="required" /></div>
+                                <input  name="email" type="email" class="form-control" id="email" placeholder="Ingresa email" required="required" /></div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -274,7 +284,7 @@
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
-                            Enviar Mensjae</button>
+                            Enviar Mensaje</button>
                     </div>
                 </div>
                 </form>

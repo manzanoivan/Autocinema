@@ -9,8 +9,9 @@
 		private $idSede;
 		private $existencia;
 		private $sede;
+		private $imagen;
 		
-		public function __construct($id2, $nombre2, $descripcion2, $precio2, $idSede2, $existencia2, $sede2){
+		public function __construct($id2, $nombre2, $descripcion2, $precio2, $idSede2, $existencia2, $sede2, $imagen2){
 			
 			$this->id = $id2;
 			$this->nombre = $nombre2;
@@ -19,6 +20,15 @@
 			$this->idSede = $idSede2;
 			$this->existencia = $existencia2;
 			$this->sede = $sede2;
+			$this->imagen= $imagen2;
+		}
+		
+		public function getImagen(){
+			return $this->imagen;
+		}
+
+		public function setImagen($imagen){
+			$this->imagen = $imagen;
 		}
 		
 		public function getId(){

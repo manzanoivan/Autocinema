@@ -36,7 +36,7 @@
 					?>					
 					<div class="product">
 						<div class="product__info">
-							<img class="product__image" src="../images/1.png" />
+							<img class="product__image" src="data:image/png;base64,<?php echo base64_encode( $producto->getImagen() );  ?>" />
 							<h3 class="product__title"><?php echo $producto->getNombre();  ?></h3>
 							<span class="product__year extra highlight">2011</span>
 							<span class="product__region extra highlight">Douro</span>
@@ -59,12 +59,12 @@
 	          	<div class="content-panel grid">					
 					<?php
 						$listaDeProductos = new ListaDeProductos();
-						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 2");
+						$productos = $listaDeProductos->getProductosWhere("sede.idSede = 2 AND existencia > 0");
 						foreach ($productos as $producto) {
 					?>					
 					<div class="product">
 						<div class="product__info">
-							<img class="product__image" src="../images/1.png" />
+							<img class="product__image" src="data:image/png;base64,<?php echo base64_encode( $producto->getImagen() );  ?>" />
 							<h3 class="product__title"><?php echo $producto->getNombre();  ?></h3>
 							<span class="product__year extra highlight">2011</span>
 							<span class="product__region extra highlight">Douro</span>

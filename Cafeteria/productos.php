@@ -51,12 +51,12 @@
 			  
 			  
               <tr>
-                <td><a href="verproducto.jsp"><?php echo $producto->getNombre();  ?></a></td>
+                <td><?php echo $producto->getNombre();  ?></td>
                 <td><?php echo $producto->getSede();  ?></td>
 				<td><?php echo $producto->getExistencia();  ?></td>
                 <td>$<?php echo $producto->getPrecio();  ?></td>
                 <td>
-                  <a href="modificarProducto.php?id=<?php echo $producto->getId(); ?>&sede=<?php echo $producto->getIdSede();?>"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                  <a href="modificarProducto.php?id=<?php echo $producto->getId(); ?>"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
                   <a href="eliminarProducto.php?id=<?php echo $producto->getId(); ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                 </td>
               </tr>

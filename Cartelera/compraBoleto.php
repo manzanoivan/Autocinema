@@ -109,14 +109,10 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label>Mes de Vencimiento</label>
-                                                        <input  type="text" class="form-control" placeholder="mm"  id="fecha" data-conekta="card[exp_month]" required>
-                                                    </div>        
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>Año de Vencimiento</label>
-                                                        <input  type="text" class="form-control" placeholder="yyyy"  id="fecha2" data-conekta="card[exp_year]" required>
+                                                        <label>Fecha Vencimiento</label>
+                                                        <input  type="text" class="form-control" placeholder="mm/yyyy"  id="fecha" required>
+                                                        <input type="hidden" name="mes" id="mes" data-conekta="card[exp_month]">
+                                                        <input type="hidden" name="anio" id="anio" data-conekta="card[exp_year]">
                                                     </div>        
                                                 </div>
                                                 <div class="col-md-3">
@@ -209,23 +205,14 @@
                 viewMode: 1,
                 minViewMode: 1
             });  
-        
-        });
-    </script>
-
-    <script type="text/javascript">
-        // When the document is ready
-        $(document).ready(function () {
             
-            $('#fecha2').datepicker({
-                format: "mm-yyyy",
-                viewMode: 1,
-                minViewMode: 1
-            });  
-        
+            $('.datepicker').on('click', function(){
+                    $('#mes').val( $('#fecha').val().substring(0, 2));
+                    $('#anio').val( $('#fecha').val().substring(3, 7));
+                    //alert($('#fecha').val());
+                });
         });
     </script>
-    
 
 </body>
 </html>

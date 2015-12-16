@@ -1,6 +1,12 @@
 <?php
 	require_once('Funcion.php');
-	require_once('../connect_db.php');
+	if( file_exists("connect_db.php") ){
+		require_once("connect_db.php");
+	}
+	else{
+		require_once("../connect_db.php");
+	}
+	
 	class ListaDeFunciones{
 		
 		//LISTA DEBE DE CONVERTIRSE EN UN ARREGLO DE Funcion

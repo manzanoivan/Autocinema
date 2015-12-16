@@ -7,7 +7,7 @@
 	
 		public function getProductosWhere($whereQuery){
 			$lista = array();
-			$query = "SELECT productoCafeteria.idProducto AS id, productoCafeteria.nombre AS producto, descripcion, precio, sede.idSede AS idSede, existencia, sede.nombre AS sede FROM productoCafeteria, disponibilidadProducto, sede WHERE productoCafeteria.idProducto = disponibilidadProducto.idproducto AND sede.idSede = disponibilidadProducto.idSede";
+			$query = "SELECT productoCafeteria.idProducto AS id, productoCafeteria.nombre AS producto, descripcion, precio, imagen, sede.idSede AS idSede, existencia, sede.nombre AS sede FROM productoCafeteria, disponibilidadProducto, sede WHERE productoCafeteria.idProducto = disponibilidadProducto.idproducto AND sede.idSede = disponibilidadProducto.idSede";
 			if(strcmp($whereQuery, "") != 0)
 				$query = $query." AND ".$whereQuery;
 			$link = conecta();
@@ -24,7 +24,8 @@
 					$row['precio'],
 					$row['idSede'],
 					$row['existencia'],
-					$row['sede']
+					$row['sede'],
+					$row['imagen']
 				);
 			}
 			desconecta($link);
