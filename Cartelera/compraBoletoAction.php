@@ -2,6 +2,7 @@
 	require_once("../Usuario.php");
 	require_once( "../config.php" );
 	require_once("../connect_db.php");
+	require_once("../Encrypter.php");
 	require_once("conekta-php-master/lib/Conekta.php");
 	require_once("ListaDeFunciones.php");
 
@@ -66,9 +67,21 @@
 	    $insertar = insert($sql1, $link);
 	    $sql1 = "SELECT idPago from pagoBoleto WHERE BINARY referencia='".$cargo['id']."'";
 	    $res = consultageneral( $sql1 , $link );
-	    $sql1 = "INSERT INTO boleto ( idFuncion, fechaCompra, cantidad, codigo, idPagoBoleto ) VALUES ( '".$idF."','".$time."',".$cantidad.",'abcd', ".$res[0][0].")";
+	    
+	    $sql1 = "INSERT INTO boleto ( idFuncion, fechaCompra, cantidad, idPagoBoleto ) VALUES ( '".$idF."','".$time."',".$cantidad.", ".$res[0][0].")";
 	    //echo $sql1;
 	    $insertar = insert($sql1, $link);
+
+	    $sql1 = "SELECT idBoleto from boleto WHERE BINARY idFuncion='".$idF."' AND fechaCompra = '".$time."' AND idPagoBoleto=".$res[0][0]."";
+	    $res = consultageneral( $sql1 , $link );
+
+	    $encrypted_string = Encrypter::encrypt( $res[0][0] );
+    	//echo $encrypted_string."<br>";
+	    //echo htmlspecialchars($encrypted_string , ENT_QUOTES)."<br>";
+	    $sql1 = "UPDATE boleto SET codigo='".$encrypted_string."' WHERE idBoleto='".$res[0][0]."'";
+	    //echo $sql1;
+    	$insertar = insert($sql1, $link);
+
 	    $sql1 = "UPDATE funcion SET disponibilidad=".(($funciones[0]->getDisponibilidad())-$cantidad)." WHERE idFuncion='".$idF."'";
 	    //echo $sql1;
     	$insertar = insert($sql1, $link);
@@ -76,7 +89,7 @@
     	header( "Location: ../Perfil/perfil.php" );
 	}
 	catch( Conekta_Error $e ){
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		header( "Location: compraBoleto.php?id=".$idf );
 	}
 ?>
