@@ -6,6 +6,7 @@
 	require_once("conekta-php-master/lib/Conekta.php");
 	require_once("ListaDeFunciones.php");
 	require_once("../enviarMail.php");
+	require_once("../qr.php");
 
 	session_start();
     $usuario = NULL;
@@ -91,9 +92,16 @@
     	$insertar = insert($sql1, $link);
     	desconecta($link);
 
-    	$enviarCorreo( "Compra exitosa: ".$funciones[0]->getNombrePelicula(), "<h1>Compra exitosa para la función: ".$funciones[0]->getNombrePelicula()."</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".generaQR($GLOBALS['dominio'].'/login.php?codigo='.$ticket->getCodigo())."'>" , $usuario->getEmail() );
-
-    	header( "Location: ../Perfil/perfil.php" );
+    	$titulo = "Compra exitosa: ".$funciones[0]->getNombrePelicula();
+    	$msj = "<h1>Compra exitosa para la función: ".$funciones[0]->getNombrePelicula()."</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".generaQR($GLOBALS['dominio'].'/login.php?codigo='.$encrypted_string)."'>";
+    	$var = enviarCorreo( $titulo, $msj , $usuario->getEmail() );
+    	if( $var ){
+    		echo "Sí";
+    	}
+    	else{
+    		echo "No";
+    	}
+    	//header( "Location: ../Perfil/perfil.php" );
 	}
 	catch( Conekta_Error $e ){
 		echo $e->getMessage();
