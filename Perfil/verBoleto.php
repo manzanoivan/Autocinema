@@ -4,6 +4,8 @@
     require_once ("../menu.php");
     require_once '../Header.php';
     require_once '../connect_db.php';
+    require_once("../Encrypter.php");
+    require_once("../qr.php");
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -150,16 +152,16 @@
                             <div class="col-md-4">
                                 <div class="card card-user mb">
                                     <div class="image resimg">
-                                        <img src="data:image/png;base64,<?php echo base64_encode( $ticket->getFuncion()->getImagen() );  ?>" alt="QR"/>   
+                                        <img src="data:image/png;base64,<?php echo generaQR($GLOBALS['dominio'].'/login.php?codigo='.$ticket->getCodigo());?>" alt="QR"/>   
                                     </div>
                                     <div class="content">
-                                        <p class="description text-center">Codigo QR
+                                        <p class="description text-center">Código QR
                                         </p>
                                     </div>
                                     <hr>
                                     <div class="text-center">
                                         <?php
-                                            echo $ticket->getCodigo();
+                                            echo $ticket->getCodigo()."<br>";
                                         ?>
                                     </div>
                                 </div>

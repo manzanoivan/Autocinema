@@ -3,7 +3,7 @@
 	$id = $_GET['id'];
 	$link = conecta();
 	mysqli_set_charset($link, "utf8");
-	$query = "DELETE from productocafeteria WHERE idProducto={$id}";
+	$query = "DELETE from productoCafeteria WHERE idProducto={$id}";
 	insert($query, $link);
 	desconecta($link);
 	header('Location: productos.php');

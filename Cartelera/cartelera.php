@@ -161,7 +161,7 @@
                                                     <label class="radio-label" for="radio3">Choice 3</label>
                                             </li>
                                     </ul> <!-- cd-filter-content -->
-                            </div> --> <!-- cd-filter-block -->
+                            </div> <!-- cd-filter-block -->
                     </form>
             </div> <!-- cd-filter -->
 

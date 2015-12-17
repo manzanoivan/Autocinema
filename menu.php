@@ -178,14 +178,7 @@
         $menu .="                 </ul>";
         $menu .="               </li>"; 
         $menu .="               <li><a href='".$carpeta.$principal."#ubicacion'>Ubicación</a></li>";
-        $menu .="               <li class='dropdown'>"; 
-        $menu .="                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Contacto<b class='caret'></b></a>"; 
-        $menu .="                 <ul class='dropdown-menu'>"; 
-        $menu .="                   <li><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
-        $menu .="                   <li><a href='".$carpeta."Perfil/comentarios.php'>Comentarios</a></li>";
-        $menu .="                   <li><a href='".$carpeta."Perfil/propuestas.php'>Propuestas</a></li>";
-        $menu .="                 </ul>";
-        $menu .="               </li>";
+        $menu .="               <li class='active'><a href='".$carpeta.$principal."#contacto'>Contacto</a></li>"; 
         $menu .="               <li class='dropdown'>"; 
         $menu .="                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Cafetería<b class='caret'></b></a>"; 
         $menu .="                 <ul class='dropdown-menu'>"; 
@@ -196,7 +189,7 @@
         $menu .="               <li class='dropdown'>"; 
         $menu .="                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="                 <ul class='dropdown-menu'>"; 
-        $menu .="                   <li><a href='".$carpeta."Perfil/perfil.php'>Perfil</a></li>"; 
+        $menu .="                   <li><a href='".$carpeta."Perfil/perfilAdmin.php'>Perfil</a></li>"; 
         $menu .="                   <li><a href='".$carpeta."Perfil/editar.php'>Editar Perfil</a></li>";
         $menu .="                   <li><a href='".$carpeta."logout.php'>LogOut</a></li>"; 
         $menu .="                 </ul>";

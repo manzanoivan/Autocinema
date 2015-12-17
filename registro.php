@@ -1,6 +1,7 @@
 <?php
     require_once("Usuario.php");
     require_once("connect_db.php");
+    require_once("enviarMail.php");
     //require_once("validaciones.php");
     session_start();
     
@@ -31,17 +32,10 @@
         $insertar = insert($sql1, $link);
         desconecta($link);
         if( $insertar ){
-            $mail = "<h1>Bienvenido a la comunidad del autocinema</h1>\n Has sido registrado con el usuario: ".$username;
+            $mail = "<h1>Bienvenido a la comunidad del autocinema</h1>\n<br> Has sido registrado con el usuario: ".$username;
             $titulo = "Registro exitoso";
-            $headers = "MIME-Version: 1.0\r\n"; 
-            $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
-            $headers .= "From: Autocinema < informacion@autocinema.hol.es >\r\n";
-            $bool = mail($email,$titulo,$mail,$headers);
-            if($bool){
-                echo "Mensaje enviado";
-            }else{
-                echo "Mensaje no enviado";
-            }
+            enviarCorreo( $titulo , $mail, $email );
+
             $usuario = new Usuario( $username , $password );
             $_SESSION['Usuario'] = $usuario;
             header("Location: Perfil/perfil.php");

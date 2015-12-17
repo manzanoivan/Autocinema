@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`boleto` (
   `idFuncion` BIGINT(20) NOT NULL COMMENT '',
   `fechaCompra` DATETIME NULL COMMENT '',
   `cantidad` INT NULL COMMENT '',
-  `codigo` VARCHAR(45) NULL COMMENT '',
+  `codigo` VARCHAR(100) NULL COMMENT '',
   `idPagoBoleto` INT NOT NULL COMMENT '',
   `horaEntrada` DATETIME NULL COMMENT '',
   PRIMARY KEY (`idBoleto`)  COMMENT '',

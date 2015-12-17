@@ -70,10 +70,10 @@
                 <div class="panel-heading">
                   <ul class="nav nav-tabs nav-justified">
                     <li class="active">
-                      <a data-toggle="tab" href="#overview">Venta de Boletos</a>
+                      <a data-toggle="tab" href="#overview">Comentarios</a>
                     </li>
                     <li class="">
-                      <a data-toggle="tab" href="#contact" class="contact-map">Ventas de Cafetería</a>
+                      <a data-toggle="tab" href="#contact" class="contact-map">Sugerencias de Películas</a>
                     </li>             
                   </ul>
                 </div><!-- --/panel-heading ---->
@@ -87,41 +87,53 @@
                             <table class="table table-striped table-advance table-hover">
                                 <?php
                                     $link = conecta();
-                                    $sql1 = "SELECT boleto.idBoleto AS id, boleto.fechaCompra AS fechaCompra, boleto.cantidad AS cantidad, boleto.codigo AS codigo, boleto.horaEntrada AS horaEntrada, tipo.nombre AS tipo, pago.fechaPago AS fechaPago, boleto.idFuncion AS idFuncion, pago.nombre AS nombre, pago.referencia AS referencia FROM boleto, tipoPago tipo, pagoBoleto pago, usuario WHERE usuario.idUsuario=pago.idUsuario AND tipo.idTipoPago=pago.idTipoPago AND boleto.idPagoBoleto=pago.idPago AND usuario.idUsuario=".$usuario->getId(). " ORDER BY boleto.fechaCompra DESC";
-                                    $myArray = consultaBoletos($sql1, $link);
+                                    $sql1 = "SELECT idComentario, texto, email, nombre FROM comentario";
+                                    $myArray = consultageneral($sql1, $link);
                                     desconecta($link);
 
                                     if( count( $myArray ) == 0 ){
                                 ?>
-                                    <h3>No se han vendido boletos</h3>
+                                    <h3>No hay comentarios</h3>
                                 <?php
                                     }
                                     else{
                                 ?>  
-                                <thead>
-                                    <tr>
-                                      <th>Función</th>
-                                      <th>Fecha</th>
-                                      <th>Hora</th>
-                                    </tr>
-                                  </thead>
                                   <tbody>
-                                    <?php
-                                        foreach ($myArray as $temp) {
-                                          $ticket = new Boleto( $temp );
-                                          $time = new DateTime($ticket->getFuncion()->getFecha());
-                                          $date = $time->format('j-n-Y');
-                                          $time = $time->format('H:i');
-                                    ?>
-                                      
-                                        <tr>
-                                            <td><a href="verBoleto.php?id=<?php echo $ticket->getId();?>"><?php echo $ticket->getFuncion()->getNombrePelicula();?></a></td>
-                                            <td><?php echo $date;?></td>
-                                            <td><?php echo $time;?></td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    ?>
+                                    <tr>
+                                      <td class="hidden-phone">Orlando Montiel</td>
+                                      <td>orlmontiel@gmail.com</td>
+                                      <td>
+                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      </td>
+                                      <tr>
+                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium?</td>
+                                      </tr>
+                                    </tr>
+
+                                    <tr>
+                                      <td class="hidden-phone">Lucia Jimenez</td>
+                                      <td>orluci jim@gmail.com</td>
+                                      <td>
+                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      </td>
+                                      <tr>
+                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus repellat sed voluptatem dignissimos possimus suscipit nisi consequatur inventore, magnam modi. Unde earum ad voluptatum magni pariatur, nam aspernatur! Deserunt, sint. </td>
+                                      </tr>
+                                    </tr>
+
+                                    <tr>
+                                      <td class="hidden-phone">Jesus Rodriguez</td>
+                                      <td>jesrod@gmail.com</td>
+                                      <td>
+                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      </td>
+                                      <tr>
+                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore corporis maiores deserunt voluptates harum reiciendis expedita tempora consequatur impedit! Quisquam ipsa minima laboriosam quibusdam pariatur id aspernatur, deserunt nesciunt repellendus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, enim, ipsam. Placeat mollitia obcaecati in dolorem. Atque laboriosam illo, qui eius nemo unde voluptatibus et repudiandae, fuga eaque, a aliquid.</td>
+                                      </tr>
+                                    </tr>
                                   </tbody>
                                 
                             <?php    
@@ -135,45 +147,34 @@
                       <div class="col-md-12 bg-white">
                         <div class="content-panel">
                           <hr>
-                            <table class="table table-striped table-advance table-hover">
+                            <table class="table table-striped table-advance">
                                 <?php
                                     $link = conecta();
-                                    $sql1 = "SELECT idCompra, fechaPago, referencia, nombre, fechaEntrega FROM compraCafeteria WHERE idUsuario=".$usuario->getId(). " ORDER BY fechaPago DESC";
-                                    $myArray = consultaTicket($sql1, $link);
+                                    $sql1 = "SELECT idPropuesta, textoPropuesta FROM propuesta";
+                                    $myArray = consultageneral($sql1, $link);
                                     desconecta($link);
 
                                     if( count( $myArray ) == 0 ){
                                 ?>
-                                    <h3>No se han realizado ventas en la cafetería</h3>
+                                    <h3>No se hay sugerencias de películas</h3>
                                 <?php
                                     }
                                     else{
                                 ?>  
                                 <thead>
-                                    <tr>
-                                      <th>ID</th>
-                                      <th>Fecha Compra</th>
-                                      <th>Fecha Entrega</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                        foreach ($myArray as $temp) {
-                                          $ticket = new TicketCafeteria( $temp );
-                                          $time = new DateTime($ticket->getFechaPago());
-                                          $date = $time->format('j-n-Y');
-                                          $time = $time->format('H:i:s');
-                                    ?>
-                                      
-                                        <tr>
-                                            <td><a href="verTicket.php?id=<?php echo $ticket->getId();?>"><?php echo $ticket->getId();?></a></td>
-                                            <td><?php echo $date;?></td>
-                                            <td><?php echo $time;?></td>
-                                        </tr>
-                                    <?php
-                                        }
-                                    ?>
-                                  </tbody>
+                                  <tr>
+                                    <th>Película</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Titanic</a></td>
+                                    <td>
+                                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                    </td>
+                                  </tr>
+                                </tbody>
                                 
                             <?php    
                                 }

@@ -5,6 +5,7 @@
 	require_once("../Encrypter.php");
 	require_once("conekta-php-master/lib/Conekta.php");
 	require_once("ListaDeFunciones.php");
+	require_once("../enviarMail.php");
 
 	session_start();
     $usuario = NULL;
@@ -75,8 +76,11 @@
 	    $sql1 = "SELECT idBoleto from boleto WHERE BINARY idFuncion='".$idF."' AND fechaCompra = '".$time."' AND idPagoBoleto=".$res[0][0]."";
 	    $res = consultageneral( $sql1 , $link );
 
-	    $encrypted_string = Encrypter::encrypt( $res[0][0] );
+	    $encrypted_string = Encrypter::encrypt( 'B'.$res[0][0] );
     	//echo $encrypted_string."<br>";
+    	//echo 'B'.$res[0][0]."<br>";
+    	//echo $encrypted_string."<br>";
+    	//echo Encrypter::decrypt( $encrypted_string );
 	    //echo htmlspecialchars($encrypted_string , ENT_QUOTES)."<br>";
 	    $sql1 = "UPDATE boleto SET codigo='".$encrypted_string."' WHERE idBoleto='".$res[0][0]."'";
 	    //echo $sql1;
@@ -86,6 +90,9 @@
 	    //echo $sql1;
     	$insertar = insert($sql1, $link);
     	desconecta($link);
+
+    	$enviarCorreo( "Compra exitosa: ".$funciones[0]->getNombrePelicula(), "<h1>Compra exitosa para la función: ".$funciones[0]->getNombrePelicula()."</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".generaQR($GLOBALS['dominio'].'/login.php?codigo='.$ticket->getCodigo())."'>" , $usuario->getEmail() );
+
     	header( "Location: ../Perfil/perfil.php" );
 	}
 	catch( Conekta_Error $e ){
