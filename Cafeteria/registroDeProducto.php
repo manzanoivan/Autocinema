@@ -20,11 +20,11 @@
 		$link = conecta();
 		mysqli_set_charset($link, "utf8");
 		
-		$query1 = "INSERT INTO productocafeteria(nombre,descripcion,precio, imagen) VALUES ('{$nombre}','{$descripcion}','{$precio}', '{$image}')";		
+		$query1 = "INSERT INTO productoCafeteria(nombre,descripcion,precio, imagen) VALUES ('{$nombre}','{$descripcion}','{$precio}', '{$image}')";		
 		insert($query1, $link);
 		
 		$id = -1;
-		$consulta = "SELECT idProducto FROM productocafeteria";
+		$consulta = "SELECT idProducto FROM productoCafeteria";
 		if(!$result = mysqli_query($link,$consulta)){ 
 			die();
 		}
@@ -32,8 +32,8 @@
 		{
 			$id = $row['idProducto'];
 		}
-		$query2 = "INSERT INTO disponibilidadproducto (idProducto, idSede, existencia) VALUES ('{$id}',1,'{$existencias1}')";
-		$query3 = "INSERT INTO disponibilidadproducto (idProducto, idSede, existencia) VALUES ('{$id}',2,'{$existencias2}')";		
+		$query2 = "INSERT INTO disponibilidadProducto (idProducto, idSede, existencia) VALUES ('{$id}',1,'{$existencias1}')";
+		$query3 = "INSERT INTO disponibilidadProducto (idProducto, idSede, existencia) VALUES ('{$id}',2,'{$existencias2}')";		
 		insert($query2, $link);
 		insert($query3, $link);
 		desconecta($link);
