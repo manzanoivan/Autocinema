@@ -30,7 +30,7 @@
 
     <section id="profile" class="home-section">
         <?php
-            if( !isset( $usuario ) || is_null($usuario->getId()) || $usuario->getTipo() != 4 ){
+            if( !isset( $usuario ) || is_null($usuario->getId()) || $usuario->getTipo() != 3 ){
         ?>        
             <div class="col-lg-12">
                 <div class="row content-panel bg-white">
@@ -46,7 +46,7 @@
         ?>
             <div class="col-lg-12">
               <div class="row content-panel bg-white">
-                <div class="col-md-4 profile-text">
+                <div class="col-md-6 profile-text">
                     <br>
                     <h3>
                         <?php

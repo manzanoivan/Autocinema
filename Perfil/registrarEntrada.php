@@ -5,6 +5,7 @@
     require_once '../Header.php';
 
 	session_start();
+    date_default_timezone_set('America/Mexico_City');
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
         $usuario = $_SESSION["Usuario"];
@@ -21,7 +22,7 @@
 	$sql1 = "SELECT horaEntrada from boleto WHERE BINARY codigo='".$codigo."'";
     $res = consultageneral( $sql1 , $link );
     
-    $horaEntrada = $res[0][0];
+    $horaEntrada = @$res[0][0];
     
     if( is_null( $horaEntrada ) && count($res) == 1){
 		$ahora = new DateTime("now");
