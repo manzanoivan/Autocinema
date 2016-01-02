@@ -248,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `autocinema`.`compraCafeteria` (
   `referencia` VARCHAR(500) NULL COMMENT '',
   `nombre` VARCHAR(200) NULL COMMENT '',
   `fechaEntrega` DATETIME NULL COMMENT '',
+  `codigo` VARCHAR(100) NULL COMMENT '',
   PRIMARY KEY (`idCompra`)  COMMENT '',
   INDEX `fk_compraCafeteria_usuario1_idx` (`idUsuario` ASC)  COMMENT '',
   CONSTRAINT `fk_compraCafeteria_usuario1`
@@ -542,8 +543,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `autocinema`;
-INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (1, 2, '2016-1-1 8:10:00', 'textoreferencia', 'Iván Manzano', NULL);
-INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`) VALUES (2, 3, '2016-2-1 9:00:00', 'referenciadePago', 'Sergio Juárez', '2016-2-1 10:00:00');
+INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`, `codigo`) VALUES (1, 2, '2016-1-1 8:10:00', 'textoreferencia', 'Iván Manzano', NULL, NULL);
+INSERT INTO `autocinema`.`compraCafeteria` (`idCompra`, `idUsuario`, `fechaPago`, `referencia`, `nombre`, `fechaEntrega`, `codigo`) VALUES (2, 3, '2016-2-1 9:00:00', 'referenciadePago', 'Sergio Juárez', '2016-2-1 10:00:00', NULL);
 
 COMMIT;
 

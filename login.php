@@ -6,14 +6,15 @@
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
         $usuario = $_SESSION["Usuario"];
-    }  
+    } 
+    $codigo = urlencode(htmlspecialchars(@$_GET["codigo"], ENT_QUOTES));
 ?>
 <!DOCTYPE html>
 <html>
 <?php
     echo getHeader(0);
 ?>
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom" onload="errorFunction()">
 	<!-- Preloader -->
 	<div id="preloader">
 	  <div id="load"></div>
@@ -48,12 +49,22 @@
                         <a class="" href="signin.php">
                             Crear una cuenta
                         </a>
-                    </div>    
+                    </div>
+                    <?php
+                        if( isset($codigo) && !is_null($codigo) )
+                            echo "<input type='hidden' name='codigo' value='".$codigo."'>";
+                    ?>    
                 </div>
             </form>  
             <?php
             }
             else{
+                if( $usuario->getTipo() == 3 ){
+                    header("Location: Perfil/registrarEntrega.php?codigo=".$codigo."");
+                }
+                if( $usuario->getTipo() == 4 ){
+                    header("Location: Perfil/registrarEntrada.php?codigo=".$codigo."");
+                }
             ?>    
                 <form class="form-login" action="" method="POST">
                     <h2 class="form-login-heading">Ya has iniciado sesión</h2>
@@ -67,6 +78,16 @@
     <?php
         echo getScripts(0);
     ?>
+    <script>
+        function errorFunction(){
+            <?php
+                if( isset( $_SESSION['errorLogin'] ) ){
+                    echo "alert('{$_SESSION['errorLogin']}');";
+                    unset($_SESSION['errorLogin']);
+                }
+            ?>
+        }
+    </script>
 
 </body>
 

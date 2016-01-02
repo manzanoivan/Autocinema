@@ -4,6 +4,7 @@
     require_once ("../menu.php");
     require_once '../Header.php';
     require_once '../connect_db.php';
+    require_once("../qr.php");
     session_start();
     $usuario = NULL;
     if(isset( $_SESSION["Usuario"] ) ){
@@ -49,7 +50,7 @@
                 else{
                     $idB = htmlspecialchars($_GET["id"] , ENT_QUOTES);
                     $link = conecta();
-                    $sql1 = "SELECT idCompra, fechaPago, referencia, nombre, fechaEntrega FROM compraCafeteria WHERE idUsuario=".$usuario->getId(). " AND idCompra='".$idB."' ORDER BY fechaPago DESC";
+                    $sql1 = "SELECT idCompra, fechaPago, referencia, nombre, fechaEntrega, codigo FROM compraCafeteria WHERE idUsuario=".$usuario->getId(). " AND idCompra='".$idB."' ORDER BY fechaPago DESC";
                     $myArray = consultaTicket($sql1, $link);
                     desconecta($link);
                     if( count( $myArray ) < 1 ||  count( $myArray ) > 1){
@@ -70,7 +71,7 @@
                             if( !is_null($ticket->getFechaEntrega()) ){
                                 $time = new DateTime($ticket->getFechaEntrega());
                                 $date = $time->format('j/n/Y');
-                                $time = $time->format('H:i');
+                                $time = $time->format('H:i A');
                             }
                             
 
@@ -109,7 +110,7 @@
                               <div class="pull-right"><?php
                                   $time2 = new DateTime($ticket->getFechaPago());
                                   $date2 = $time2->format('j/n/Y');
-                                  $time2 = $time2->format('H:i');
+                                  $time2 = $time2->format('H:i A');
                                   echo $date2."  ".$time2;
                               ?></div>
                               <div class="clearfix"></div>
@@ -160,7 +161,27 @@
     </div><!--/col-lg-12 mt -->
         
       
-  </div></div></div></section>
+  </div></div>
+    <div class="row">
+      <div class="col-md-4">
+          <div class="card card-user mb">
+              <div class="image resimg">
+                  <img src="data:image/png;base64,<?php echo generaQR($GLOBALS['dominio'].'/login.php?codigo='.$ticket->getCodigo());?>" alt="QR"/>   
+              </div>
+              <div class="content">
+                  <p class="description text-center">Código QR
+                  </p>
+              </div>
+              <hr>
+              <div class="text-center">
+                  <?php
+                      echo $ticket->getCodigo()."<br>";
+                  ?>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div></section>
   </section>
 
   <?php

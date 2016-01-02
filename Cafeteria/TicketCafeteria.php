@@ -7,6 +7,7 @@
         private $referencia;
         private $nombre;
         private $productos;
+        private $codigo;
 
         private function listadoProductos( $idCompra ){
             $link = conecta();
@@ -24,6 +25,8 @@
             $this->fechaEntrega = $myArray[ 'fechaEntrega' ];
             $this->referencia = $myArray[ 'referencia' ];
             $this->nombre = $myArray[ 'nombre' ];
+            $this->codigo = $myArray[ 'codigo' ];
+            //echo $myArray[ 'nombre' ]."<br>".$myArray[ 'codigo' ];
             $this->productos = $this->listadoProductos( $this->id );
         } 
         public function getId(){
@@ -32,6 +35,10 @@
         public function getFechaPago(){
             return $this->fechaPago;
         }
+        public function getCodigo(){
+            return $this->codigo;
+        }
+
         public function getFechaEntrega(){
             return $this->fechaEntrega;
         }

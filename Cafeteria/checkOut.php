@@ -2,6 +2,7 @@
     require_once("../Usuario.php");
     require_once ("../menu.php");
     require_once '../Header.php';
+    require_once( "../config.php" );
 	require_once('ListaDeProductos.php');
     session_start();
     $usuario = NULL;
@@ -53,6 +54,9 @@
 										$productos = $_SESSION['carrito']; 
 									}
 									if(!is_null($productos)){
+                    if( count($productos) == 0 ){
+                      header( "Location: cafeteria.php" );
+                    }
 										$i = 0;
 										foreach($productos as $producto){
 											$total = $total + ($producto[0]->getPrecio()*$producto[1]);
@@ -84,48 +88,37 @@
                           </table>
                         <hr>
                         <div class="content">
-                            <form action="compra.php">
+                            <form action="compraCafeteriaAction.php" method="POST" id="card-form">
+                                <div class="row">
+                                    <span id="card-errors" class="card-errors"></span>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input type="text" class="form-control" placeholder="Nombre" required>
+                                            <label>Nombre del tarjetahabiente</label>
+                                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" data-conekta="card[name]" required>
                                         </div>        
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Numero Tarjeta</label>
-                                            <input type="text" class="form-control" placeholder="012345678" required>
+                                            <label>Número de tarjeta</label>
+                                            <input type="text" class="form-control" placeholder="012345678" data-conekta="card[number]" required>
                                         </div>        
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label></label>
-                                            <select class="form-control">
-                                              <option>Visa</option>
-                                              <option>MasterCard</option>
-                                            </select>
-                                        </div>        
-                                    </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Fecha Vencimiento</label>
-                                            <input  type="text" class="form-control" placeholder="dd/mm/yyyy"  id="fecha" required>
+                                            <input  type="text" class="form-control" placeholder="mm/yyyy"  id="fecha" required>
+                                            <input type="hidden" name="mes" id="mes" data-conekta="card[exp_month]">
+                                            <input type="hidden" name="anio" id="anio" data-conekta="card[exp_year]">
                                         </div>        
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Cod. Seguridad</label>
-                                            <input type="password" class="form-control" placeholder="773" required>
-                                        </div>        
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>#Boletos</label>
-                                           <input type="number" class="form-control" min="1" max="10" value="1" required>
+                                            <input type="password" class="form-control" placeholder="773" data-conekta="card[cvc]" required>
                                         </div>        
                                     </div>
                                 </div>
@@ -143,18 +136,71 @@
         echo getScripts(1);
     ?>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
+
+    <script type="text/javascript">
+     
+     // Conekta Public Key
+      Conekta.setPublishableKey('<?php echo $GLOBALS['PublicKey']; ?>');
+     
+     // ...
+    </script>
+
+    <script type="text/javascript">
+        jQuery(function($) {
+          
+          
+          var conektaSuccessResponseHandler;
+          conektaSuccessResponseHandler = function(token) {
+              var $form;
+              $form = $("#card-form");
+              /* Inserta el token_id en la forma para que se envíe al servidor */
+              $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
+              /* and submit */
+              //$( "#card-errors" ).empty();
+              $form.get(0).submit();
+          };
+          
+          conektaErrorResponseHandler = function(token) {
+              console.log(token);
+              $form = $("#card-form");
+              $form.find("button").prop("disabled", false);
+              alert(token['message_to_purchaser']);
+              //$( "#card-errors" ).append( token['message_to_purchaser'] );
+
+          };
+          
+          $("#card-form").submit(function(event) {
+              event.preventDefault();
+              var $form;
+              $form = $(this);
+              /* Previene hacer submit más de una vez */
+              $form.find("button").prop("disabled", true);
+              Conekta.token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+              /* Previene que la información de la forma sea enviada al servidor */
+              return false;
+          });
+        });
+    </script>
+
     <!--datepicker-->
-    <script src="js/datepicker/bootstrap-datepicker.js"></script>
+    <script src="../js/datepicker/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
         // When the document is ready
         $(document).ready(function () {
             
             $('#fecha').datepicker({
-                format: "mm/yyyy",
+                format: "mm-yyyy",
                 viewMode: 1,
                 minViewMode: 1
             });  
-        
+            
+            $('.datepicker').on('click', function(){
+                    $('#mes').val( $('#fecha').val().substring(0, 2));
+                    $('#anio').val( $('#fecha').val().substring(3, 7));
+                    //alert($('#fecha').val());
+                });
         });
     </script>
 

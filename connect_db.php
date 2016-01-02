@@ -78,6 +78,7 @@
                     'fechaEntrega' => $row['fechaEntrega'],
                     'referencia' => $row['referencia'],
                     'nombre' => $row['nombre'],
+                    'codigo' => $row['codigo']
                     ];
         }
         return $rawdata;

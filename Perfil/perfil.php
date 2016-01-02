@@ -72,7 +72,7 @@
                       <a data-toggle="tab" href="#overview">Boletos</a>
                     </li>
                     <li class="">
-                      <a data-toggle="tab" href="#contact" class="contact-map">Cafeteria</a>
+                      <a data-toggle="tab" href="#contact" class="contact-map">Cafetería</a>
                     </li>              
                   </ul>
                 </div><!-- --/panel-heading ---->
@@ -102,13 +102,17 @@
                                       <th>Función</th>
                                       <th>Fecha</th>
                                       <th>Hora</th>
+                                      <th>Estatus</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <?php
+                                        date_default_timezone_set('America/Mexico_City');
                                         foreach ($myArray as $temp) {
                                           $ticket = new Boleto( $temp );
                                           $time = new DateTime($ticket->getFuncion()->getFecha());
+                                          $entrada = $ticket->getHoraEntrada();
+                                          $ahora = new DateTime("now");
                                           $date = $time->format('j-n-Y');
                                           $time = $time->format('H:i');
                                     ?>
@@ -117,6 +121,20 @@
                                             <td><a href="verBoleto.php?id=<?php echo $ticket->getId();?>"><?php echo $ticket->getFuncion()->getNombrePelicula();?></a></td>
                                             <td><?php echo $date;?></td>
                                             <td><?php echo $time;?></td>
+                                            <td>
+                                              <?php
+                                                $hrFuncion = new DateTime($ticket->getFuncion()->getFecha());
+                                                if( !is_null($entrada) ){
+                                                  echo "<span class='label label-success label-mini'>Asistió</span>";
+                                                }
+                                                elseif( $ahora < $hrFuncion ){
+                                                  echo "<span class='label label-warning label-mini'>Pendiente</span>";
+                                                }
+                                                else{
+                                                  echo "<span class='label label-danger label-mini'>No asistió</span>";
+                                                }
+                                              ?>
+                                            </td>
                                         </tr>
                                     <?php
                                         }
@@ -137,7 +155,7 @@
                             <table class="table table-striped table-advance table-hover">
                                 <?php
                                     $link = conecta();
-                                    $sql1 = "SELECT idCompra, fechaPago, referencia, nombre, fechaEntrega FROM compraCafeteria WHERE idUsuario=".$usuario->getId(). " ORDER BY fechaPago DESC";
+                                    $sql1 = "SELECT idCompra, fechaPago, referencia, nombre, fechaEntrega, codigo FROM compraCafeteria WHERE idUsuario=".$usuario->getId(). " ORDER BY fechaPago DESC";
                                     $myArray = consultaTicket($sql1, $link);
                                     desconecta($link);
 
@@ -153,6 +171,7 @@
                                       <th>ID</th>
                                       <th>Fecha Compra</th>
                                       <th>Fecha Entrega</th>
+                                      <th>Estatus</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -160,14 +179,36 @@
                                         foreach ($myArray as $temp) {
                                           $ticket = new TicketCafeteria( $temp );
                                           $time = new DateTime($ticket->getFechaPago());
-                                          $date = $time->format('j-n-Y');
-                                          $time = $time->format('H:i:s');
+                                          $ahora = new DateTime("now");
+                                          $dateE = "- - - -";
+                                          if( !is_null( $ticket->getFechaEntrega() ) ){
+                                            $time2 = new DateTime($ticket->getFechaEntrega());  
+                                            $dateE = $time2->format('j/n/Y H:i A');
+                                          }
+                                          $date = $time->format('j/n/Y H:i A');
                                     ?>
                                       
                                         <tr>
                                             <td><a href="verTicket.php?id=<?php echo $ticket->getId();?>"><?php echo $ticket->getId();?></a></td>
                                             <td><?php echo $date;?></td>
-                                            <td><?php echo $time;?></td>
+                                            <td><?php echo $dateE;?></td>
+                                            <td>
+                                            <?php
+                                              if( !is_null( $ticket->getFechaEntrega() )){
+                                                echo "<span class='label label-success label-mini'>Entregado</span>";
+                                              }
+                                              else{
+                                                $time->add(new DateInterval('P1D'));
+                                                if( $time < $ahora ){
+                                                  echo "<span class='label label-danger label-mini'>No entregado</span>";
+                                                }
+                                                else{
+                                                  echo "<span class='label label-warning label-mini'>Pendiente</span>";
+                                                }
+                                                
+                                              } 
+                                            ?>
+                                            </td>
                                         </tr>
                                     <?php
                                         }
