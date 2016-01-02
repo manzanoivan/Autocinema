@@ -20,9 +20,10 @@
 	$link = conecta();
 	$sql1 = "SELECT horaEntrada from boleto WHERE BINARY codigo='".$codigo."'";
     $res = consultageneral( $sql1 , $link );
+    
     $horaEntrada = $res[0][0];
     
-    if( is_null( $horaEntrada ) ){
+    if( is_null( $horaEntrada ) && count($res) == 1){
 		$ahora = new DateTime("now");
 		$time = $ahora->format("Y-n-j H:i:s");
 
