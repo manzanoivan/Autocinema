@@ -99,41 +99,27 @@
                                     else{
                                 ?>  
                                   <tbody>
-                                    <tr>
-                                      <td class="hidden-phone">Orlando Montiel</td>
-                                      <td>orlmontiel@gmail.com</td>
-                                      <td>
-                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                                      </td>
-                                      <tr>
-                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium?</td>
-                                      </tr>
-                                    </tr>
-
-                                    <tr>
-                                      <td class="hidden-phone">Lucia Jimenez</td>
-                                      <td>orluci jim@gmail.com</td>
-                                      <td>
-                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                                      </td>
-                                      <tr>
-                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus repellat sed voluptatem dignissimos possimus suscipit nisi consequatur inventore, magnam modi. Unde earum ad voluptatum magni pariatur, nam aspernatur! Deserunt, sint. </td>
-                                      </tr>
-                                    </tr>
-
-                                    <tr>
-                                      <td class="hidden-phone">Jesus Rodriguez</td>
-                                      <td>jesrod@gmail.com</td>
-                                      <td>
-                                        <a href="responder.jsp"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
-                                        <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                                      </td>
-                                      <tr>
-                                        <td colspan="3"> <strong>Comentario:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nihil, incidunt tempore facilis deserunt eaque doloremque aut eos expedita dolore ipsa placeat veritatis deleniti nulla perferendis repudiandae dolorum, quod, praesentium? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore corporis maiores deserunt voluptates harum reiciendis expedita tempora consequatur impedit! Quisquam ipsa minima laboriosam quibusdam pariatur id aspernatur, deserunt nesciunt repellendus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, enim, ipsam. Placeat mollitia obcaecati in dolorem. Atque laboriosam illo, qui eius nemo unde voluptatibus et repudiandae, fuga eaque, a aliquid.</td>
-                                      </tr>
-                                    </tr>
+                                    <?php
+                                      foreach ($myArray as $comentario) {
+                                        $idC = $comentario[0];
+                                        $texto = $comentario[1];
+                                        $email = $comentario[2];
+                                        $nombre = $comentario[3];
+                                    ?>
+                                        <tr>
+                                          <td class="hidden-phone"><?php echo $nombre; ?></td>
+                                          <td><?php echo $email; ?></td>
+                                          <td>
+                                            <a href="responderComentario.php?id=<?php echo $idC; ?>"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button></a>
+                                            <a href="eliminarComentario.php?id=<?php echo $idC; ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                          </td>
+                                          <tr>
+                                            <td colspan="3"> <strong>Comentario:</strong> <?php echo $texto; ?></td>
+                                          </tr>
+                                        </tr>
+                                    <?php
+                                      }
+                                    ?>
                                   </tbody>
                                 
                             <?php    
@@ -168,12 +154,20 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>Titanic</a></td>
-                                    <td>
-                                      <a href="eliminar.jsp"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
-                                    </td>
-                                  </tr>
+                                    <?php
+                                      foreach ($myArray as $sugerencia) {
+                                        $idS = $sugerencia[0];
+                                        $texto = $sugerencia[1];
+                                    ?>
+                                      <tr>
+                                        <td><?php echo $texto; ?></a></td>
+                                        <td>
+                                          <a href="eliminarSugerencia.php?id=<?php echo $idS; ?>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                        </td>
+                                      </tr>
+                                    <?php
+                                      }
+                                    ?>
                                 </tbody>
                                 
                             <?php    

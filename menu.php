@@ -18,16 +18,16 @@
         switch ($tipo) {
             case 1:
                 return menuAdmin($carpeta, $principal, $usuario->getUsername(), $cartelera,  false);
-            /*
-            case 4:
-                return menuEntrada($carpeta);
-             */
+                break;
             case 2:
                 return menuUsuario($carpeta, $principal, $usuario->getUsername(), $cartelera, false);
+                break;
             case 3:
                 return menuEntrada($carpeta, $principal, $usuario->getUsername(), $cartelera, false);
+                break;
             case 4:
                 return menuCafeteria($carpeta, $principal, $usuario->getUsername(), $cartelera, false);
+                break;
             default:
                 return menuNormal($carpeta, $principal, $cartelera, false);
         }
@@ -219,7 +219,7 @@
         $menu .="               <li class='dropdown'>"; 
         $menu .="                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="                 <ul class='dropdown-menu'>"; 
-        $menu .="                   <li><a href='".$carpeta."Perfil/perfilEntrada.php'>Perfil</a></li>"; 
+        $menu .="                   <li><a href='".$carpeta."Perfil/perfilCafeteria.php'>Perfil</a></li>"; 
         $menu .="                   <li><a href='".$carpeta."Perfil/editar.php'>Editar Perfil</a></li>";
         $menu .="                   <li><a href='".$carpeta."logout.php'>LogOut</a></li>"; 
         $menu .="                 </ul>"; 
@@ -275,7 +275,7 @@
         $menu .="               <li class='dropdown'>"; 
         $menu .="                 <a href='#' class='dropdown-toggle' data-toggle='dropdown'>".$nombre."<b class='caret'></b></a>"; 
         $menu .="                 <ul class='dropdown-menu'>"; 
-        $menu .="                   <li><a href='".$carpeta."Perfil/perfilCafeteria.php'>Perfil</a></li>"; 
+        $menu .="                   <li><a href='".$carpeta."Perfil/perfilAdmin.php'>Perfil</a></li>"; 
         $menu .="                   <li><a href='".$carpeta."Perfil/editar.php'>Editar Perfil</a></li>";
         $menu .="                   <li><a href='".$carpeta."logout.php'>LogOut</a></li>"; 
         $menu .="                 </ul>";
