@@ -102,7 +102,8 @@
     	else{
     		echo "No";
     	}
-    	header( "Location: ../Perfil/perfil.php" );
+    	echo $msj;
+    	//header( "Location: ../Perfil/perfil.php" );
 	}
 	catch( Conekta_Error $e ){
 		echo $e->getMessage();
