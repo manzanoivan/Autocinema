@@ -114,7 +114,7 @@
                                           $entrada = $ticket->getHoraEntrada();
                                           $ahora = new DateTime("now");
                                           $date = $time->format('j-n-Y');
-                                          $time = $time->format('H:i');
+                                          $time = $time->format('h:i A');
                                     ?>
                                       
                                         <tr>
@@ -183,9 +183,9 @@
                                           $dateE = "- - - -";
                                           if( !is_null( $ticket->getFechaEntrega() ) ){
                                             $time2 = new DateTime($ticket->getFechaEntrega());  
-                                            $dateE = $time2->format('j/n/Y H:i A');
+                                            $dateE = $time2->format('j/n/Y h:i A');
                                           }
-                                          $date = $time->format('j/n/Y H:i A');
+                                          $date = $time->format('j/n/Y h:i A');
                                     ?>
                                       
                                         <tr>

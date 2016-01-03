@@ -19,7 +19,7 @@
 	}
 
 	$link = conecta();
-	$sql1 = "SELECT horaEntrada from boleto WHERE BINARY codigo='".$codigo."'";
+	$sql1 = "SELECT horaEntrada, cantidad from boleto WHERE BINARY codigo='".$codigo."'";
     $res = consultageneral( $sql1 , $link );
     
     $horaEntrada = @$res[0][0];
@@ -70,6 +70,7 @@
                     		if( $success == true ){
                     	?>
 								<h5>Entrada aprobada</h5>
+                                <h5>Válido por <?php echo $res[0][1];?> vehículos</h5>
 		                        <div class="avatar"><img src="../img/icons/checked_true.png" alt="" class="img-responsive img-circle img-center" /></div>
 	                    <?php
 	                    	}

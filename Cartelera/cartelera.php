@@ -29,13 +29,18 @@
             <section class="cd-gallery">
                     <ul>					                
 				<?php
+                    date_default_timezone_set('America/Mexico_City');
+                    $ahora = new DateTime("now");
 					$listaDeFunciones = new ListaDeFunciones();
 					$funciones = $listaDeFunciones->getFuncionesWhere("");
 					foreach ($funciones as $funcion)
-				
 					{
-
-				 
+                        $time = new DateTime($funcion->getFecha());
+				        if( $time < $ahora ){
+                            continue;
+                        }
+                        $date = $time->format('j/n/Y');
+                        $time = $time->format('h:i A');
 					
 					
 				?>
@@ -84,8 +89,7 @@
 							<div class="team boxed-grey">
 								<div class="inner">
 									<h5><?php echo $funcion->getSede(); ?></h5>
-									<p class="subtitle"><?php echo $funcion->getFecha(); ?></p>
-									<!-- CAMBIAR POR getImagen -->
+									<p class="subtitle"><?php echo $date." ".$time; ?></p>
 									<div class="avatar"><img src="data:image/png;base64,<?php echo base64_encode( $funcion->getImagen() );  ?>" alt="" class="img-responsive img-center" /></div>
 									<p class="subtitle"><?php echo $funcion->getNombrePelicula(); ?></p>
 									<p> Clasificación <?php echo $clasi?> </p>

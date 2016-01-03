@@ -20,7 +20,7 @@
     
 ?>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom" onload="errorFunction()">
 	 <link href='css/center-bootstrap.css' rel='stylesheet'>
 	<!-- Preloader -->
 	<div id="preloader">
@@ -318,6 +318,28 @@
 			</div>	
 		</div>
     </div>	
+    	<li class="gap"></li>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="boxed-grey">
+                    <form id="contact-form" action="proponerPelicula.php"  method="post" >
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">
+                                    Sugerir una película</label>
+                                <input  name="nombre" type="text" class="form-control" id="name" placeholder="Nombre de la película" required="required" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                                Enviar Sugerencia</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 		</div>
 	</section>
@@ -336,6 +358,17 @@
                     </div>
             </div>	
 	</footer>
+    
+	<script>
+        function errorFunction(){
+            <?php
+                if( isset( $_SESSION['errorIndex'] ) ){
+                    echo "alert('{$_SESSION['errorIndex']}');";
+                    unset($_SESSION['errorIndex']);
+                }
+            ?>
+        }
+    </script>
     
     <!-- Core JavaScript Files -->
     <script src="js/jquery.min.js"></script>

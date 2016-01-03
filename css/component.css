@@ -53,8 +53,12 @@
 	min-width: 16em;
 	margin: 0 1em 2.5em;
 	padding: 1.5em 1.5em 2em;
-	background: #24252A;
+	background: none repeat scroll 0% 0% #24252A;
 	border-radius: 5px;
+	max-width: 24em;
+	color: #FFF;
+	max-height: 40em;
+	min-height: 35em;
 }
 
 .product--selected {

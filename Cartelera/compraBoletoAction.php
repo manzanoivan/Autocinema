@@ -94,7 +94,7 @@
 
     	$titulo = "Compra exitosa: ".$funciones[0]->getNombrePelicula();
     	$qr = generaQR($GLOBALS['dominio']."/login.php?codigo='".$encrypted_string."'");
-    	$msj = "<html><head><meta charset='UTF-8'></head><body><h1>Compra exitosa para la función: ".$funciones[0]->getNombrePelicula()."</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".$qr."'/></body></html>";
+    	$msj = "<html><head><meta charset='UTF-8'></head><body><h1>Compra exitosa para la función: ".$funciones[0]->getNombrePelicula()."</h1><h2>Fecha: ".$desc."</h2><h2>Valido por  ".$cantidad." vehículos</h2><h2>Sede: ".$funciones[0]->getSede()."</h2><h3>Código: ".$encrypted_string."</h3><img src='data:image/png;base64,".$qr."'/></body></html>";
     	$var = enviarCorreo( $titulo, $msj , $usuario->getEmail() );
     	if( $var ){
     		echo "Sí";
