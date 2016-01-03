@@ -106,7 +106,7 @@
 
     	$titulo = "Compra exitosa en la cafetería ";
     	$qr = generaQR($GLOBALS['dominio']."/login.php?codigo='".$encrypted_string."'");
-    	$msj = "<html><head></head><body><h1>Compra exitosa en la cafetería: ";
+    	$msj = "<html><head><meta charset='UTF-8'></head><body><h1>Compra exitosa en la cafetería: ";
     	foreach($productos as $producto){
 	    	$auxProd = $listaDeProductos->getProductosWhere(" productoCafeteria.idProducto=".$producto[0]->getId())[0];
 	    	if( $auxProd->getExistencia() < $producto[1] ){
@@ -114,7 +114,7 @@
 	    	}
 	    	$msj .= "<p>".$producto[1]." x ".$producto[0]->getNombre()."( $".$producto[0]->getPrecio()." ) = ".$producto[0]->getPrecio()*$producto[1]."</p>";
 	    }
-    	$msj .= "</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".$qr."'/>".$qr."</body></html>";
+    	$msj .= "</h1><h2>Código: ".$encrypted_string."</h2><img src='data:image/png;base64,".$qr."'/></body></html>";
     	$var = enviarCorreo( $titulo, $msj , $usuario->getEmail() );
     	if( $var ){
     		echo "Sí";
