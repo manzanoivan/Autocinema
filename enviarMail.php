@@ -1,5 +1,5 @@
 <?php
-	require_once '../PHPMailer/class.phpmailer.php';
+	require_once 'PHPMailer/class.phpmailer.php';
 	
 	function enviarCorreo($titulo , $mensaje, $dest){
 		$mail = new PHPMailer(true); 
