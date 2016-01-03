@@ -105,7 +105,7 @@
     	desconecta($link);
 
     	$titulo = "Compra exitosa en la cafetería ";
-    	$qr = generaQR($GLOBALS['dominio']."/login.php?codigo='".$encrypted_string."'");
+    	$qr = generaQR($GLOBALS['dominio']."/login.php?codigo=".$encrypted_string);
     	$msj = "<html><head><meta charset='UTF-8'></head><body><h1>Compra exitosa en la cafetería: ";
     	foreach($productos as $producto){
 	    	$auxProd = $listaDeProductos->getProductosWhere(" productoCafeteria.idProducto=".$producto[0]->getId())[0];
